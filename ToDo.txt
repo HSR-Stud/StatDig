@@ -1,0 +1,6 @@
+TODO:
+
+- Linear Algebra
+- verbessern von Wtheorie 
+- erstelle Schätzer etc in der WTheorie
+- übersetze gewisse Kapitel ins Englische, so dass alles konzistent ist

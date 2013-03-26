@@ -1,0 +1,25 @@
+
+\vspace{0.2cm}
+
+\begin{minipage}{7cm}
+\subsection{Periodogramm}
+$\hat{P}_{per}(\e^{j\omega})=\frac 1N \left|\sum\limits_{n=0}^{N-1}{x(n)\cdot\e^{-j n \omega}}\right|^2$\\
+Bias: $E\{\hat{P}_{per}(\e^{j\omega})\}=\frac 1{2\pi} P_x(\e^{j\omega})\cdot W_B(\e^{j\omega})$\\
+Resolution: $\Delta\omega=0.89\frac{2\pi}N=2\pi\frac{\Delta f}{f_s}$\\
+Variance: $Var\{\hat{P}_{per}(\e^{j\omega})\}\approx P_x^2(\e^{j\omega})$
+\end{minipage}
+\begin{minipage}{12cm}
+	\begin{minipage}{7cm}
+		\subsection{Bartlett's Method}
+		$\hat{P}_{B}(\e^{j\omega})=\frac 1N \sum\limits_{i=0}^{K-1}{\left|\sum\limits_{n=0}^{L-1}{x(n+i L)\cdot\e^{-j n \omega}}\right|^2}$\\
+		Bias: $E\{\hat{P}_{B}(\e^{j\omega})\}=\frac 1{2\pi} P_x(\e^{j\omega})\cdot W_B(\e^{j\omega})$\\
+		Resolution: $\Delta\omega=0.89K\frac{2\pi}N=2\pi\frac{\Delta f}{f_s}$\\
+		Variance: $Var\{\hat{P}_{B}(\e^{j\omega})\}\approx \frac 1K P_x^2(\e^{j\omega})$
+	\end{minipage}
+	\begin{minipage}{4.8cm}
+		$N=K\cdot L$\\
+		$K$ Gross $\rightarrow$ Kleine Varianz\\
+		$L$ Gross $\rightarrow$ Gute Frequenzaufl�sung\\
+		$N=\Delta t\cdot f_s$
+	\end{minipage}
+\end{minipage}

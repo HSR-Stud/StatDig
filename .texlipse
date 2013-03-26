@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Sun Jan 06 14:49:54 CET 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=StatDig.tex
+outputFile=StatDig.pdf
+langSpell=en
+markDer=true
+srcDir=

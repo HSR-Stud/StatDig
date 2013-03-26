@@ -1,0 +1,237 @@
+\begin{landscape}
+
+\begin{minipage}{7cm}
+\includegraphics[width=\textwidth,trim= 0cm 0cm 0cm 0cm]{bilder/Transformationen/Fourier-Trafo.png}
+
+\end{minipage}
+\begin{minipage}{8.25cm}
+	\includegraphics[width=\textwidth,trim= 0cm 0.3cm 0cm 0.45cm]{bilder/Transformationen/Z-Lexikon.png}
+	\end{minipage}
+	\begin{minipage}{10cm}
+	\includegraphics[width=\textwidth,trim= 0cm 0cm 0cm 0cm]{bilder/Transformationen/Rechteck-Sinc.png}
+	\textbf{Matrizeninversion}\\
+	$A^{-1} = \begin{pmatrix}
+	a & b \\ c & d \\
+	\end{pmatrix}^{-1} =
+	\frac{1}{\det(A)} \begin{pmatrix}
+	d & -b \\ -c & a \\
+	\end{pmatrix}  =
+	\frac{1}{ad-bc} \begin{pmatrix}
+	d & -b \\ -c & a \\
+	\end{pmatrix}\quad$\\
+	$A^{-1} = \begin{pmatrix}
+	a & b & c\\ d & e & f \\ g & h & i \\
+	\end{pmatrix}^{-1} =
+	\frac{1}{\det(A)} \begin{pmatrix}
+	ei - fh & ch - bi & bf - ce \\
+	fg - di & ai - cg & cd - af \\
+	dh - eg & bg - ah & ae - bd
+	\end{pmatrix}$\\
+	\vspace{-0.2cm}
+	\begin{minipage}{4cm}
+		\textbf{Trigonometrie} \\
+		$e^{j\varphi}=\cos(\varphi)+ j \cdot \sin(\varphi) $
+		$e^{-j\varphi}=\cos(\varphi)- j \cdot \sin(\varphi) $
+		$\cos(x) = \frac{e^{jx} + e^{-jx}}{2}$\\
+		$\sin(x) = \frac{e^{jx} - e^{-jx}}{2j}$\\
+		$\cos^2(x) = \frac12 + \frac{\cos(2x)}{2}$\\
+		$\sin^2(x) = \frac12 - \frac{\cos(2x)}{2}$\\
+		$\sin(2x)=2\sin(x)\cdot\cos(x)$\\
+		$\sin^2(x)+\cos^2(x)=1$
+	\end{minipage}
+	\begin{minipage}{5cm}
+		\textbf{Determinanten} \\
+		\footnotesize
+		$\det \begin{pmatrix} a & b \\ c & d\\ \end{pmatrix} =
+		a d - b c \quad$\\
+		$\det \begin{pmatrix} 
+		a & b & c \\
+		d & e & f \\
+		g & h & i  \end{pmatrix}
+		= a e i + b f g + c g h \\
+		\text{\hspace{2.5cm}} -c e g - f h a - i b d$		\normalsize
+	\end{minipage}
+\end{minipage}
+
+%\section{Fourier Transformation}
+\begin{minipage}{0.85\linewidth}
+%\subsubsection{Eigenschaften von Fourier- und Z-Transformation}
+\footnotesize 
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|p{4.3cm}||p{1.8cm}|p{1.8cm}||p{2.2cm}|p{2.4cm}||p{1.9cm}|p{2.6cm}|}
+\hline
+\textbf{Bezeichnung}
+  & \multicolumn{2}{|c||}{\textbf{Zeitbereich}}
+  & \multicolumn{2}{|c||}{\textbf{Kontinuierlicher Frequenzbereich}}
+  & \multicolumn{2}{|c|}{\textbf{Diskreter Frequenzbereich}} \\
+  & \textbf{kontinuierlich}
+  & \textbf{diskret}
+  & \textbf{Fourier-Integral} 
+  & \textbf{Laplace}
+  & \textbf{Diskrete FT} 
+  & \textbf{Z-Transformation} \\
+\hline
+\hline
+  Linearität 
+  & $\alpha\cdot f(t) + \beta\cdot g(t)$
+  & $\alpha\cdot f(n) + \beta\cdot g(n)$
+  & $\alpha\cdot F(\omega) + \beta\cdot G(\omega)$
+  & $\alpha\cdot F(s) + \beta\cdot G(s)$
+  & $\alpha\cdot F(n) + \beta\cdot G(n)$
+  & $\alpha\cdot F(z) + \beta\cdot G(z)$\\
+\hline
+  "Ahnlichkeit / Zeitskalierung bzw. Spiegelung an Y-Achse
+  &	$f(\alpha t)$ 
+  & $f(-n)$
+  & $\frac{1}{|\alpha|}F \left (\frac{\omega}{\alpha} \right)$
+  & $\frac{1}{\alpha}F \left (\frac{s}{\alpha} \right )$ 
+  & $F(-n)$
+  & $F(z^{-1})$\\
+%\hline
+  %D�mpfung
+  %& -
+  %& $e^{dn} f(n)$
+  %& -
+  %& - 
+  %& -
+  %& $F(z e^{d})$ \\
+\hline
+  Verschiebung im Zeitbereich 
+  & $f(t\pm t_0)$ 
+  & $f(n \pm n_0)$
+  & $e^{\pm j\omega t_0} F(\omega)$
+  & $F(s)e^{\pm t_0 s}$ 
+  & $e^{\pm j\frac{n}{N}2 \pi n_0} F(n)$
+  & $z^{\pm n_0} F(z)$\\
+\hline
+  Verschiebung im Frequenzbereich 
+  & $f(t)e^{\mp\alpha t}$ 
+  & $f(n) e^{\mp j \frac{n}{N} 2 \pi n_0}$
+  & $F(\omega\pm \alpha)$
+  & $F(s\pm\alpha)$ 
+  & $F(n \pm n_0)$
+  & $F(z \pm n_0)$\\
+\hline
+  Faltung im Zeitbereich 
+  &	$f(t) \ast g(t)$
+  & $f(n) \ast g(n)$
+  & $F(\omega) \cdot G(\omega)$
+  & $F(s) \cdot G(s)$
+  & $F(n) \cdot G(n)$ 
+  & $F(z) \cdot G(z)$ \\
+\hline
+  Faltung im Frequenzbereich 
+  &	$f(t) \cdot g(t)$
+  & $f(n) \cdot g(n)$
+  & $\frac{1}{2\pi} F(\omega) \ast G(\omega)$
+  & $\frac{1}{2\pi} F(s) \ast G(s)$ 
+  & $\frac{1}{N} F(n) \ast G(n)$
+  & $\frac{1}{N} F(z) \ast G(z)$\\
+\hline
+  Ableitungen im Zeitbereich bzw. Differenzenbildung 
+  & $\frac{\partial^n f(t)}{\partial t^n}$ 
+  & $\Delta^k f(n)$
+  & $(j\omega)^n F(\omega)$
+  & $s^nF(s)-s^{n-1}f(0+)-s^{n-2}\frac{\partial f(0+)}{\partial t}-\ldots
+ 			-s^0\frac{\partial^{n-1} f(0+)}{\partial t^{n-1}}$
+  & 
+  & $(1-z^{-1})^k F(z)$ \\
+\hline
+  Ableitung im Frequenzbereich
+  & $(-t)^k\cdot f(t)$ 
+  & $n f(n)$ 
+  & $j^k \frac{-\partial^k F(\omega)}{\partial \omega^k}$
+  & $\frac{\partial^k F(s)}{\partial s^k}$
+  & 
+  & $-z \frac{\partial F(z)}{\partial z}$ \\
+\hline 			
+  Integration bzw. Summierung
+  & $\int\limits_{-\infty}^t f(\tau)d\tau$ 
+  & $\sum\limits_{n=0}^{k} f(n)$
+  & $\frac{F(\omega)}{j\omega}+F(0)\pi\delta(\omega)$
+  & $\frac{F(s)}{s}$
+  & 
+  & $\frac{1}{1-z^{-1}} F(z)$ \\
+\hline
+  Anfangswert 
+  & $\lim\limits_{t\rightarrow 0} f(t)$ 
+  & $f(0)$
+  & 
+  & $\lim\limits_{s\rightarrow \infty} sF(s)$ 
+  & 
+  & $\lim\limits_{z \rightarrow \infty} F(z)$ \\
+\hline
+  Endwert
+  &	$\lim\limits_{t\rightarrow \infty} f(t)$
+  & $\lim\limits_{n\rightarrow \infty} f(n)$
+  & 
+  & $\lim\limits_{s\rightarrow 0} sF(s)$
+  & 
+  & $\lim\limits_{z \rightarrow 1} (1-z^{-1} F(z))$\\
+%\hline
+  %Stabilit�t
+  %& -
+  %& -
+  %& -
+  %& Pole in LHE
+  %& 
+  %& Pole innerhalb Einheitskreis \\
+%\hline
+  %Kausalit�t
+  %& -
+  %& -
+  %& A- \& Kausal
+  %& Nur Kausal
+  %& 
+  %& $\lim\limits_{z \rightarrow \infty} z^{-1} F(z) = 0$ \\
+\hline
+\hline
+  Spezial
+  & \multicolumn{3}{l||}{
+      Bessel-Theorem \qquad
+      $\int\limits_{-\infty}^{\infty}f(t)g^{\ast}(t)dt =
+         \frac{1}{2\pi}
+         \int\limits_{-\infty}^{\infty}F(\omega)G^{\ast}(\omega)d\omega$}
+  & \multicolumn{3}{|l|}{
+      Parseval-Theorem \qquad
+      $W = \int\limits_{-\infty}^{\infty}|f(t)|^2 dt = \frac{1}{2\pi}
+      \int\limits_{-\infty}^{\infty}|F(\omega)|^2 d\omega$
+    }\\
+\hline
+\end{tabular}
+
+\vspace{0.1cm}
+
+\normalsize
+
+$1\pm e^{-j\omega T}= (e^{j\frac{\omega}{2} T}\pm e^{-j\frac{\omega}{2} T})\cdot e^{-j\frac{\omega}{2} T}$
+\qquad
+$a^n \FT \frac{1}{1-az^-1}$
+\qquad
+$a^{|n|} \FT \frac{1-a^2}{(1-az^-1)(1-az)}$
+%
+\renewcommand{\arraystretch}{1}\\
+
+
+\vspace{-2cm}
+\end{minipage}
+\begin{minipage}{0.2\linewidth}
+\textbf{Quadratische Gleichung:}\\
+$a\cdot x^2+b\cdot x +c=0$\\
+
+$x_{1,2}=\frac{-b\pm \sqrt{b^2-4ac}}{2a}$\\
+
+\textbf{Fouriertransformation:}\\
+
+$\delta(t)\FT 1$\\
+$1\FT 2\pi \delta(\omega)$\\
+$\sigma(t)\FT \frac{1}{j\omega}+\pi\delta(\omega)$\\
+$\text{sgn}(t)\FT \frac{2}{j\omega}$\\
+$e^{\pm j \omega_0 t} \FT 2\pi \delta(\omega \mp \omega_0)$\\
+$\sin(\omega_0t)\FT j\pi(\delta(\omega +\omega_0)-\newline\text{\hspace{2.7cm}}\delta(\omega -\omega_0))$\\
+$\cos(\omega_0t)\FT \pi(\delta(\omega +\omega_0)+\newline\text{\hspace{2.6cm}}\delta(\omega -\omega_0))$\\
+
+
+
+\end{minipage}
+\end{landscape}

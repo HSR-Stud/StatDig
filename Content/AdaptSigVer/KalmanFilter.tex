@@ -1,0 +1,55 @@
+\subsubsection{Kalman Filter}
+%\scriptsize
+\textbf{Grundgedanke} Beim Kalman Filter wird der Kalman Gain nach dem
+kleinsten Fehlerquadrat geschätzt. Speziell am Kalman ist, dass Messgrössen
+mithilfe der Zustandsgrössen und einem Rauschsignal definiert ist. \\
+\textbf{Voraussetzungen}
+\begin{aufzaehlung}
+   	\item Physikalisches Modell/Systementwicklung (für normales sogar ein
+   	lineares Modell)
+   	\item Messwerte, auch eine Sensorfusion möglich (mehrere Messwerte für ein
+   	Systemzustand)
+   	\item für normales Kalman: linearer Zusammenhang zwischen Messwerten und
+   	Zustandsgrössen
+\end{aufzaehlung}
+\begin{minipage}{8cm}
+	\includegraphics[width=8cm]{Content/AdaptSigVer/KalmanFilter.jpg}
+	
+	\begin{itemize}
+		\item $\hat{x}_{k-1}$ und $P_{k-1}$ benötigen Initialisierungswerte
+		\item $P_K$ und $K_K$ können offline vorausberechnet werden, wenn das System nicht ändert
+	\end{itemize}
+	
+\end{minipage}
+\begin{minipage}{11cm}
+	\small
+	\textbf{Funktion}
+		\begin{liste}
+	    	\item A Systementwicklungsmatrize: Physikalische Modell
+	    	\item K Kalman Gain: Gewichtet interne Schätzung und die Messungen der
+	    	einzelnen Sensoren (0=Nur interne Schätzung;1=nur Messung)
+	    	\item H Messmatrize: Zusammenhang zwischen Mess- und Zustandsgrössen
+	    	\item P (Fehlerkovarianzma.) Schätzgrösse für den Fehler. Je grösser desto
+	    	mehr wird aktuelle Messung berücksichtigt. Beim normalen Kalman Filter
+	    	konvergiert dieser mit der Zeit.
+	    	\item z: Messwerte (auch von mehreren gleichartigen Sensoren möglich)
+	    	\item x: Zustandsgrössen
+	    	\item Initialwert: Systemwerte beliebig; Fehlerkovarianzmatrize sehr
+	    	gross wählen, so dass zuerst nur die Messung berücksichtigt wird
+	    	\item Q Standartabweichung System (Systemrauschen)
+	    	\item R Standartabweichung der Sensoren (Messrauschen)
+				\item Das Verhältniss von Q zu R ist für die Filtereinstellung verantwortlich.\newline
+				$\frac QR$ gross $\rightarrow$ vertraut mehr den Messdaten\newline \hspace{4cm} $\frac QR$ klein $\rightarrow$ vertraut mehr den Systemeigenschaften
+	    \end{liste}
+	\normalsize
+\end{minipage}\\
+\\
+\textbf{Vereinfachtes Prinzip des Kalman-Filters}\\
+\begin{minipage}{14.5cm}
+Man hat zwei ungenaue Sensoren $T_1$ und $T_2$, welche das gleiche Signal messen und deren Standartabweichungen $\sigma_1$ und $\sigma_2$ bekannt sind. Der beste
+Schätzer $\hat{T}$ wird wie folgt errechnet:\\
+\end{minipage}
+\hspace{0.25cm}
+\begin{minipage}{5cm}
+$\hat{T}=\frac{\sigma_1^2}{\sigma_1^2+\sigma_2^2}\cdot T_2+\frac{\sigma_2^2}{\sigma_1^2+\sigma_2^2}\cdot T_1$
+\end{minipage}

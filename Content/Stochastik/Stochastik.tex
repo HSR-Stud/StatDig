@@ -1,0 +1,135 @@
+\section{Stochastische Signale \& Harmonische Analyse}
+
+\begin{liste}   
+    \item \textbf{Stationär:} Sind die statist Mittelwerte über die ganze Zeit konstant, handelt es sich um einen stationären Prozess.
+    \item \textbf{Ergodisch:} Ein stationärer Prozess ist zudem ergodisch, wenn die zeitlichen den statistischen Mittelwerten entsprechen.
+		\item \textbf{Wahrscheinlichkeitsdichtefunktion:} $p_s(\alpha)$
+\end{liste}
+
+%\textbf{Zeitliche Mittelwerte} \\
+\begin{tabular}{|p{4.5cm}|l|l|}
+    \hline
+    & \textbf{Zeitliche Mittelwerte}
+    & \textbf{Statistische Mittelwerte}\\
+    \hline
+    Linearer Mittelwert (DC)
+        & $\mu_s = \overline{s(t)} = \lim\limits_{T \to \infty} \frac  1T \int\limits_{T/2}^{T/2}s(t) dt$ 
+        & $\mu_1 = E\{s\} = \int\limits_{-\infty}^{\infty} \alpha \cdot p_s(\alpha) d\alpha$ \\
+    \hline
+    Quadratischer Mittelwert (Leistung)
+        & $P_s = \overline{s^2(t)} = \lim\limits_{T \to \infty} \frac 1T \int\limits_{T/2}^{T/2}s^2(t) dt$ 
+        & $\mu_2 = E\{s^2\} = \int\limits_{-\infty}^{\infty} \alpha^2 \cdot p_s(\alpha) d\alpha$ \\
+    \hline
+    Varianz
+        & $\sigma_s^2 = \overline{[s(t) - \mu_s]^2} = \lim\limits_{T \to \infty} \frac 1T \int\limits_{T/2}^{T/2}[s(t)-\mu_s]^2 dt$ 
+        & $\sigma_s^2 = E\{(s-\mu_1)^2\} = \int\limits_{-\infty}^{\infty} (\alpha-\mu_1)^2 \cdot p_s(\alpha) d\alpha$ \\
+    \hline
+\end{tabular}
+
+%\vspace{0cm}
+%
+%\begin{tabular}{llll}
+%Schätzer: \hspace{1cm} $\hat{\mu_s}= \frac 1T \int\limits_{T/2}^{-T/2}{s(t)dt}$ \hspace{1cm} &$\hat{P_s}=\int\limits_{T/2}^{-T/2}{s^2(t)dt}$ \hspace{1cm} &$\hat{\sigma_s}=\int\limits_{T/2}^{-T/2}{(s(t)-\mu_s)^2dt}$ \hspace{1cm}
+%
+%\vspace{-0.25cm}
+%
+%\end{tabular}
+
+
+
+\subsection{Harmonische Analyse}
+\begin{tabular}{|l|l|}
+%     \hline
+%         \multicolumn{2}{|l|}{\textbf{Harmonische Analyse}} \\
+     \hline
+    Energie
+        & $ W_s = \int\limits_{-\infty}^{\infty} s^2 (t) dt = \frac {1}{2 \pi} \int\limits_{-\infty}^{\infty} E_s(\omega) d\omega$ \\
+    \hline
+    Energiedichtespektrum 
+        & $E_s(\omega) = | S(\omega) |^2 = S(\omega) \cdot S^*(\omega) \IFT R_{sseb}(\tau) $ \\
+    \hline
+    Energiebegrenzte Autokorrelat.
+        & $R_{sseb} (\tau) = e(\tau) = \int\limits_{-\infty}^{\infty} s (t) \cdot s(t+\tau) dt \FT E_s(\omega)$ \\
+    \hline
+    Leistung
+        & $ P_s =  \lim\limits_{T \rightarrow \infty} \frac 1T \int\limits_{-T/2}^{T/2} s^2 (t) dt = \frac {1}{2 \pi} \int\limits_{-\infty}^{\infty} \Phi_s(\omega) d\omega$ \\
+    \hline
+    Leistungsdichtespektrum 
+        & $\Phi_s(\omega) = \lim\limits_{T \rightarrow \infty} \frac 1T  | S_T(\omega) |^2 = \lim\limits_{T \rightarrow \infty} \frac 1T  S_T^*(\omega) S_T(\omega)  \IFT R_{ss}(\tau)
+        \qquad \Psi_S(\omega) = 2 \Phi_S(\omega), \omega \geq 0$ \\
+    \hline
+    \textbf{Autokorrelation}
+        & $R_{ss} (\tau) = \lim\limits_{T \rightarrow \infty} \frac 1T \int\limits_{-T/2}^{T/2} s (t) \cdot s(t+\tau) dt = \overline{s(t) \cdot s(t+\tau)} \FT
+        \Phi_s(\omega)$ \\ & $R_{ss} (0) = P_S \qquad R_{ss} (\tau) = R_{ss} (-\tau) \qquad R_{ss} (\tau) \leq R_{ss} (0) \qquad \rho_{SS}(\tau) = \frac {R_{ss} (\tau)}{R_{ss} (0)} $\\
+    \hline
+    \textbf{Kreuzkorrelation}
+        & $R_{sf} (\tau) = \lim\limits_{T \rightarrow \infty} \frac 1T \int\limits_{-T/2}^{T/2} s (t) \cdot f(t+\tau) dt = \overline{s(t) \cdot f(t+\tau)} \FT \Phi_{sf}(\omega)$ \\
+    \quad unkorreliert $ = R_{sf} (\tau) = 0$   & $R_{sf} (\tau) \neq R_{sf} (-\tau) \qquad R_{sf} (\tau) = R_{fs} (-\tau) \qquad \rho_{sf}(\tau) = \frac {R_{sf}(\tau)
+        }{\sqrt{R_{ss}(0)  R_{ff}(0) }} $ \\
+				\hline
+		Faltung & $s(t)*r(t)=\int\limits_{-\infty}^t{s(\tau)\cdot r(t-\tau) d\tau}=\int\limits_{-\infty}^t{r(\tau)\cdot s(t-\tau) d\tau}$\\
+    \hline
+    Kreuz(leistungsdichte)spektrum 
+        & $\Phi_{sf}(\omega) = \lim\limits_{T \rightarrow \infty} \frac 1T  S_T^*(\omega) F_T(\omega) \IFT R_{sf}(\tau) \qquad \Phi_{sf}(\omega) = \Phi_{fs}^*(\omega)$ \\
+    \hline
+    Einfluss durch LTI-System $H$
+        & $ \Phi_{Y}(\omega) = \Phi_{X}(\omega) \left|H(\omega)\right|^2 
+        \qquad
+            \Phi_{XY}(\omega) = \Phi_{X}(\omega) H(\omega) 
+        \qquad 
+             |H(\omega)|^2 = H(\omega)\cdot H^*(\omega)$ \\
+    \hline
+    Periodische Signale mit $c_n$
+        & $R_{ssp}(\tau) = c_0^2 + 2 \sum\limits_{n=1}^{\infty} |c_n|^2 \cos n \omega_0 \tau  \qquad
+        \Phi_{sp}(\tau) = 2 \pi \sum\limits_{n=-\infty}^{\infty} |c_n|^2 \delta (\omega - n \omega_0)   $\\
+    \hline
+\end{tabular}
+\vspace{-0.5cm}
+\subsubsection{Beispiele Autokorrelation}
+\begin{tabular}{|l|l|}
+%     \hline
+%         \multicolumn{2}{|l|}{\textbf{Beispiele Autokorrelation}} \\
+    \hline
+        Weisses Rauschen
+        & $R_{ss} (\tau) = \frac {N_0}{2} \delta(\tau) \FT \Phi_s(\omega)= \frac {N_0}{2};\hspace{0.25cm} \Psi_s(\omega) = N_0$\\
+    \hline
+        Prozess erster Ordnung
+        & $R_{ss} (\tau) = P_s e^{-|\tau|/T} \FT \Phi_s (\omega) = \frac {2 T P_S}{1 + (\omega T)^2}$\\
+    \hline
+        Binäres Datensignal
+        & $R_{ss} (0) = P_s = A_1^2p_1 + A_0^2 p_0 \qquad R_{ss} (|\tau| < T) = $ linearer Übergang von $R_{ss}(0)$ zu $R_{ss} (|\tau| = T)$ \\
+        & $R_{ss} (|\tau| \geq T) = P_s = A_1^2p_1^2 + A_0A_1p_0p_1 + A_1A_0p_1p_0 + A_0^2p_0^2$  \\
+    \hline
+        überlagerte Signale
+        & $R_{gg+}(\tau) = R_{ss}(\tau) + R_{sf}(\tau) + R_{sf}(-\tau) + R_{ff}(\tau)
+        \FT \Phi_{g+}(\omega) = \Phi_{s}(\omega) + \Phi_{f}(\omega) + 2 \text{Re} \{ \Phi_{sf}(\omega) \}$
+        \\ $g_\pm(t) = s(t) \pm f(t)$
+        & $R_{gg-}(\tau) = R_{ss}(\tau) - R_{sf}(\tau) - R_{sf}(-\tau) + R_{ff}(\tau)
+            \FT \Phi_{g-}(\omega) = \Phi_{s}(\omega) + \Phi_{f}(\omega) - 2 \text{Re} \{ \Phi_{sf}(\omega) \}$
+        \\
+    \hline
+\end{tabular} 
+\vspace{-0.5cm}
+\subsubsection{Numerische Berechnung}
+\begin{tabular}{|l|l|}
+    \hline
+		\multicolumn{2}{|l|}{\textbf{Numerische Berechnung}} \\
+    \hline
+    Autokorrelation
+        & $\hat{R}_{ss} (n \Delta t) = \frac 1 N \sum\limits_{m=0}^{N-1} s(m \Delta t) s[(m+n) \Delta t] 
+                                     = \frac 1 N \sum\limits_{m=0}^{N-1} s[(m-n) \Delta t] s(m \Delta t) \DFT \hat{\Phi}_{s}(k \Delta f)$ \\
+    \hline
+    Kreuzkorrelation
+        & $\hat{R}_{sf} (n \Delta t) = \frac 1 N \sum\limits_{m=0}^{N-1} s(m \Delta t) f[(m+n) \Delta t] 
+                                     = \frac 1 N \sum\limits_{m=0}^{N-1} s[(m-n) \Delta t] f(m \Delta t) \DFT \hat{\Phi}_{sf}(k \Delta f) $ \\
+    \hline
+    Leistungsdichtespektrum 
+        & $\hat\Phi_s(k \Delta f) = \frac 1N \left|S_T(k\Delta f)\right|^2 \IDFT \hat{R}_{ss} (n \Delta t)
+            \qquad \text{mit} \quad S_T(k\Delta f) \IDFT s(m \Delta t)$\\
+    \hline
+    Kreuz(leistungsdichte)spektrum 
+        & $\hat\Phi_{sf}(k \Delta f) = \frac 1N S_T^*(k\Delta f) F_T(k \Delta f) \IDFT \hat{R}_{sf} (n \Delta t)
+        \qquad \text{mit} \quad F_T(k\Delta f) \IDFT f(m \Delta t)$\\
+				
+    \hline
+\end{tabular}
