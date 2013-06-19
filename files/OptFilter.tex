@@ -218,10 +218,20 @@ The steady-state is reached when $\mathbf{P}(n|n) = \mathbf{P}(n-1 | n-1)$ and $
 
 \subsubsection{Vereinfachtes Prinzip des Kalman-Filters}
 \begin{minipage}{14.5cm}
-Man hat zwei ungenaue Sensoren $T_1$ und $T_2$, welche das gleiche Signal messen und deren Standardabweichungen $\sigma_1$ und $\sigma_2$ bekannt sind. Der beste
+Man hat zwei ungenaue Sensoren $T_1$ und $T_2$ (unkorreliert), welche das gleiche Signal messen und deren Standardabweichungen $\sigma_1$ und $\sigma_2$ bekannt sind. Der beste
 Schätzer $\hat{T}$ wird wie folgt errechnet:\\
 \end{minipage}
 \hspace{0.25cm}
 \begin{minipage}{5cm}
 $\hat{T}=\frac{\sigma_1^2}{\sigma_1^2+\sigma_2^2}\cdot T_2+\frac{\sigma_2^2}{\sigma_1^2+\sigma_2^2}\cdot T_1$
+\end{minipage}
+\begin{minipage}{14.5cm}
+Man hat zwei korrelierte Signale $T_1$ und $T_2$ mit $\sigma_1$ und $\sigma_2$ und dem Korrelationskoeffizient $\rho$ bekannt. Der beste
+Schätzer $\hat{T}$ wird wie folgt errechnet:\\
+\end{minipage}
+\hspace{0.25cm}
+\begin{minipage}{5cm}
+$\hat{T}=k_1\cdot T_1 + k_2\cdot T_2$\\
+$k_1=\frac{\sigma_2^2-\rho \sigma_1 \sigma_2}{\sigma_1^2 - 2 \rho \sigma_1 \sigma_2 + \sigma_2^2}$\\
+$k_2=1-k_1=\frac{\sigma_1^2-\rho \sigma_1 \sigma_2}{\sigma_1^2 - 2 \rho \sigma_1 \sigma_2 + \sigma_2^2}$\\
 \end{minipage}

@@ -102,10 +102,10 @@ gegebenem Signal $x[n]$ überein, nachher ist der Filter nicht einmal zwingend s
     		0
 		\end{bmatrix} \Longleftrightarrow 
 		\underbrace{ \begin{bmatrix}
-    		x[q] &  \hdots & x[q+1-p] \\                                   
-    		x[q+1] & \hdots & x[q+2-p] \\
-    		\vdots & \ddots & \vdots \\                             
-    		x[q+p-1] & \hdots & x[q] \\
+    		x[q]     & x[q-1]   & \hdots & x[q-p+1] \\                                   
+    		x[q+1]   & x[q]     & \hdots & x[q-p+2] \\
+    		\vdots   & \vdots   & \ddots & \vdots \\                             
+    		x[q+p-1] & x[q+p-2] & \hdots & x[q] \\
 		\end{bmatrix}  
 		}_{\bm  X_t} \cdot 
 		\underbrace{\begin{bmatrix}

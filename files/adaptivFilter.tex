@@ -29,7 +29,9 @@ The adaptive filter should
 To solve the Wiener-Hopf equations, in every step the autocorrelation matrix has to be inverted and with the crosscorrelation multiplied. 
 To reduce this calculations, the coefficient are updated into optimal direction with a small step.
 \begin{minipage}{13cm}
-$$w_{n+1}=w_n-\mu \cdot  \dfrac{\delta \xi}{\delta w_n} =w_n-\mu \cdot \bigtriangledown\xi(n) \Rightarrow \boxed{ w_{n+1}= w_n+\mu \cdot E\left\lbrace e(n)x^*(n)\right\rbrace}$$
+$$w_{n+1}=w_n-\mu \cdot  \dfrac{\delta \xi}{\delta w_n} =w_n-\mu \cdot \bigtriangledown\xi(n) \Rightarrow \boxed{ w_{n+1}= w_n+\mu \cdot E\left\lbrace e(n)x^*(n)\right\rbrace}$$ \\
+																											$$ \boxed{	w_{n+1}= w_n - \mu \cdot [R_x w_n - r_{dx} ]   }$$ \\
+																				%	Stationary solution:	 $ \boxed{	w_{n \to \infty}= w_0 \cdot [R_x w_n - r_{dx} ]^n, n\to \infty   }$
 $$ 0<\mu< \frac 2 \lambda_{max}; \lambda_{max} = \text{maximum eigenvalue of autocorrelation matrix } R_x$$
 To compute the $E\left\lbrace e(n)x^*(n)\right\rbrace$, a averaging over the last L sample has to be done.  
 $$E\left\lbrace e(n)x^*(n)\right\rbrace= \frac{1}{L}\sum\limits_{l=0}^{L-1}e(n-l)x^*(n-l)$$
@@ -38,6 +40,9 @@ $$E\left\lbrace e(n)x^*(n)\right\rbrace= \frac{1}{L}\sum\limits_{l=0}^{L-1}e(n-l
         \includegraphics[width=6cm]{../StatDig/bilder/steepestDescent.jpg}
 \end{minipage}
 
+ How fast converge the solution/filter: $\displaystyle \tau=\max\{\tau_k\}\approx\frac{1}{\mu \lambda_{min}} $
+
+
 \clearpage
 \subsubsection{LMS Algorithm \hayes{505}}
 \begin{minipage}{14cm}
@@ -45,7 +50,7 @@ $$E\left\lbrace e(n)x^*(n)\right\rbrace= \frac{1}{L}\sum\limits_{l=0}^{L-1}e(n-l
   The LMS algorithm use the same idea as the steepest descent, but just choose the last sample (L=1).\\
   $\boxed{ w_{n+1}=w_n+\mu \cdot e(n) \cdot x^*(n) }$\\
   
-  The LMS just converges in the mean, if $0<\mu< \frac{2}{(p+1)E\left(|x(n)|^2\right)}=\frac{2}{(p+1)r_x(0)}$.
+  The LMS just converges in the mean, if $\displaystyle 0<\mu< \frac{2}{(p+1)E\left(|x(n)|^2\right)}=\frac{2}{(p+1)r_x(0)}=\frac{2}{(p+1) \cdot \frac{1}{N} \sum_{k=0}^{N-1}|x(n-k)|^2}$.
   The filter coefficients converge to $\hat d(n) = d(n)$ or $e(n) = 0$. 
   That means that filter coefficients always will move, but in the mean they are correct.
 \end{minipage}
