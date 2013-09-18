@@ -1,5 +1,5 @@
 \section{Adaptive Filtering}
-
+ 
 \subsection{Adaptive FIR Filters \hayes{497}}
 \begin{minipage}{8cm}
         \includegraphics[width=8cm]{./bilder/adaptiveFiltering.jpg}
@@ -50,7 +50,7 @@ $$E\left\lbrace e(n)x^*(n)\right\rbrace= \frac{1}{L}\sum\limits_{l=0}^{L-1}e(n-l
   The LMS algorithm use the same idea as the steepest descent, but just choose the last sample (L=1).\\
   $\boxed{ w_{n+1}=w_n+\mu \cdot e(n) \cdot x^*(n) }$\\
   
-  The LMS just converges in the mean, if $\displaystyle 0<\mu< \frac{2}{(p+1)E\left(|x(n)|^2\right)}=\frac{2}{(p+1)r_x(0)}=\frac{2}{(p+1) \cdot \frac{1}{N} \sum_{k=0}^{N-1}|x(n-k)|^2}$.
+  The LMS just converges in the mean, if $\displaystyle 0<\mu< \frac{2}{(p+1)E\left(|x(n)|^2\right)}=\frac{2}{(p+1)r_x(0)}=\frac{2}{(p+1) \cdot \frac{1}{N} \sum\limits_{k=0}^{N-1}|x(n-k)|^2}$.
   The filter coefficients converge to $\hat d(n) = d(n)$ or $e(n) = 0$. 
   That means that filter coefficients always will move, but in the mean they are correct.
 \end{minipage}
@@ -79,8 +79,14 @@ $$E\left\lbrace e(n)x^*(n)\right\rbrace= \frac{1}{L}\sum\limits_{l=0}^{L-1}e(n-l
 The NLMS is most command used, because it's easy to program, fast to compute and convergence quite fast.\\
 The idea is to adapt also the stepsize $\mu(n)=\frac{\beta}{\|x(n)\|^2} \Rightarrow $
 $\boxed{w_{n+1}=w_n +\beta \frac{x^*(n)}{\epsilon+\|x(n)\|^2}e(n)}$\\
-Where $\|x(n)\|^2$ is the signal power, $\epsilon$ is used for small $\|x(n)\|$ and is a small positive number and $0<\beta<2$.\\\\
-To reduce the calculation the normalization term $\|x(n)\|$ can also be calculatet recursively:\\ $\|x(n+1)\|^2 =  \|x(n)\| + |x(n+1)|^2 -|x(n-p)|^2$
+\begin{liste}
+	\item $\|x(n)\|^2$ is the signal power $\to \frac{1}{p+1} \sum\limits_{k=0}^{p} | x(n-k) |^2 $, recursively: $\|x(n+1)\|^2 =  \|x(n)\| + |x(n+1)|^2 -|x(n-p)|^2$
+ 	\item $\epsilon$ is used for small $\|x(n)\|$ (numerical stability)
+	\item $\beta$ is a normalized step size with $0 < \beta < 2$
+\end{liste}
+
+%Where $\|x(n)\|^2$ is the signal power, $\epsilon$ is used for small $\|x(n)\|$ and is a small positive number and $0<\beta<2$.\\\\
+%To reduce the calculation the normalization term $\|x(n)\|$ can also be calculatet recursively:\\ $\|x(n+1)\|^2 =  \|x(n)\| + |x(n+1)|^2 -|x(n-p)|^2$
 
 \subsubsection{Applications - Noise Cancellation \hayes{517}}
 \begin{minipage}{9cm}
