@@ -317,7 +317,7 @@ bestimmten Zeitpunkt $t$ gemittelt.
 
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}[c]{ p{4.5cm}  p{13.5 cm}  }
-	\textbf{Erwartungswert}: 	&  $\mu_{X}(t) = E\left[X(t)\right] =
+	\textbf{Erwartungswert}: 	&  $\mu_{x}(t) = E\left[X(t)\right] =
           \int\limits_{-\infty}^{+\infty} x \cdot f_{X}(x;t)\;dx$ bzw $=\frac{1}{N}\sum\limits_{i=1}^{N}x_i(n)$ \\
     \textbf{Erwartungswert eines deterministischen Signals}:& $\mu_f(t) = E(f(t))=f(t)$\\
  	\textbf{Varianz}: &         $\sigma_X^2(t)=E((x(t)-\mu_X(t))^2)=c_X(t_1,t_1)$
@@ -339,9 +339,9 @@ $$ f_X(x_1, x_2, \ldots, x_n; t_1, t_2, \ldots, t_n) =
 		f_X(x_1, x_2, \ldots, x_n; t_1+c, t_2+c, \ldots, t_n+c) \qquad \forall (c,n \in
 		\mathbb{R})$$
 % Es gelten folgende Beziehungen: \\
-% $$E[X(t)] = \mu_{X} \qquad \qquad
-% R_{XX}(t_{1},t_{2}) = R_{X}(\tau),\quad \text{ mit } \tau = t_{2} - t_{1} \qquad \qquad
-% C_{XX}(t_{1},t_{2}) = R_{X}(\tau) - \mu_{X}^{2}$$ 
+% $$E[X(t)] = \mu_{x} \qquad \qquad
+% r_{xx}(t_{1},t_{2}) = r_{x}(\tau),\quad \text{ mit } \tau = t_{2} - t_{1} \qquad \qquad
+% c_{xx}(t_{1},t_{2}) = r_{x}(\tau) - \mu_{c}^{2}$$ 
 
 \textbf{Schwach Stationär (WSS - Wide Sense Stationary) - Stationarität 2. Ordnung}\\
 Bei einem schwach stationären Prozess sind die statistischen Eigenschaften zwar
@@ -352,13 +352,13 @@ $$ f_X(x_1, x_2; t_1, t_2) = f_X(x_1, x_2; t_1+c, t_2+c) \qquad \forall (c \in
 %Zudem gilt:\\
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}[c]{ p{3.3cm}  p{6.5cm} p{8cm} }
-	\textbf{Mittelwert}: 	&  $E[X(t)] = \mu_{X} = \text{const.}$  
+	\textbf{Mittelwert}: 	&  $E[X(t)] = \mu_{x} = \text{const.}$  
 							& bleibt über die ganze Zeit konstant\\ 
-	\textbf{quad. Mittelwert}: 	&  $E[X^{2}(t)] = R_{X}(0)$  \\ 
-	\textbf{Autokorrelation}: 	& 	$R_{XX}(t_{1},t_{2}) = R_{X}(\tau)$
+	\textbf{quad. Mittelwert}: 	&  $E[X^{2}(t)] = r_{x}(0)$  \\ 
+	\textbf{Autokorrelation}: 	& 	$r_{xx}(t_{1},t_{2}) = r_{x}(\tau)$
 	& \multirow{2}{8cm}{nur \textbf{abhängig} von der \textbf{Zeitdifferenz} $(\tau = t_2 - t_1)$ und \textbf{nicht direkt} von
 	 der \textbf{Zeit} $t$} \\
-	 \textbf{Autokovarianz}:		& $ C_{XX}(t_{1},t_{2}) = R_{X}(\tau) - \mu_{X}^{2} = C_{XX}(\tau)$ \\
+	 \textbf{Autokovarianz}:		& $ c_{xx}(t_{1},t_{2}) = r_{x}(\tau) - \mu_{x}^{2} = c_{xx}(\tau)$ \\
 \end{tabular}
 \renewcommand{\arraystretch}{1}
  
@@ -370,11 +370,11 @@ Jeder streng stationäre Prozess ist auch schwach stationär, aber nicht umgekeh
 %   \item Zwei Zufallsprozesse heissen Verbund-schwach-station\"ar, wenn jeder Prozess f\"ur sich 
 %         schwach-station\"ar ist und zudem gilt:  
 %         \begin{itemize}
-%           \item[$\circ$] $R_{XY}(t_{1},t+\tau) = E[X(t)Y(t+\tau)] = R_{XY}(\tau)$ 
+%           \item[$\circ$] $r_{xy}(t_{1},t+\tau) = E[X(t)Y(t+\tau)] = r_{xy}(\tau)$ 
 %         \end{itemize} 
 %   \item Dann gilt auch:
 %   \begin{itemize}
-%      \item[$\circ$] $C_{XY}(\tau) = R_{XY}(\tau) - \mu_{X} \mu_{Y}$
+%      \item[$\circ$] $c_{xy}(\tau) = r_{xy}(\tau) - \mu_{x} \mu_{y}$
 %   \end{itemize} 
 % \end{itemize} 
 
@@ -393,7 +393,7 @@ abhängig davon (darum Index $_i$), welche Funktion genutzt wird.
            \lim\limits_{T \rightarrow \infty}
              \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} x_{i}(t) \; dt$ \\
    	\textbf{Autokorrelation}: 	& 	
-   	$\overline{R}_{X_{i}X_{i}}(\tau) = \left\langle x_{i}(t) \cdot x_{i}(t+\tau) \right\rangle = 
+   	$\overline{r}_{x_{i}x_{i}}(\tau) = \left\langle x_{i}(t) \cdot x_{i}(t+\tau) \right\rangle = 
            \lim\limits_{T \rightarrow \infty}
              \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} x_{i}(t) \cdot x_{i}(t + \tau) \; dt$\\
     \multicolumn{2}{l}{Falls der \textbf{Prozess stationär} ist gilt zudem: } \\
@@ -401,12 +401,12 @@ abhängig davon (darum Index $_i$), welche Funktion genutzt wird.
 	$E[\overline{x}] = 
            \lim\limits_{T \rightarrow \infty}
              \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} E[x(t)] \; dt = 
-             \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} \mu_{X} \; dt = \mu_{X}$  \\
+             \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} \mu_{x} \; dt = \mu_{x}$  \\
    	\textbf{Autokorrelation}: 	& 	
-   	$E[\overline{R}_{XX}(\tau)] = 
+   	$E[\overline{r}_{xx}(\tau)] = 
            \lim\limits_{T \rightarrow \infty}
              \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} E[x(t)x(t+\tau)] \; dt =
-             \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} R_{XX}(\tau) \; dt = R_{XX}(\tau)$\\
+             \frac{1}{T} \int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} r_{xx}(\tau) \; dt = r_{xx}(\tau)$\\
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
@@ -424,7 +424,7 @@ Ein stationärer Prozess ist zudem noch ergodisch, wenn die \textbf{zeitlichen M
   		\multicolumn{2}{l}{Nur bei ergodischen Prozessen gilt zwingend:} \\ \\
       $E[X(t)] = \overline{x} = \left\langle x(t) \right\rangle$ & DC-Level \\
       $E[X(t)]^{2} = (\overline{x})^{2} = \left\langle x(t) \right\rangle^{2}$ & DC-Leistung \\
-      $E[X^{2}(t)] = R_{XX}(0) = \overline{x^{2}} = 
+      $E[X^{2}(t)] = r_{xx}(0) = \overline{x^{2}} = 
                      \left\langle x^{2}(t) \right\rangle $ & Gesamtleistung \\
       $\sigma_{X}^{2}(t) = \left\langle x^{2}(t) \right\rangle 
                            - \left\langle x(t) \right\rangle^{2}$ & AC-Leistung \\
@@ -461,56 +461,56 @@ Formeln in diesem Abschnitt gelten für \textbf{stationäre} Prozesse. \\
 \renewcommand{\arraystretch}{1.6}
 \begin{tabular}[c]{ p{3.5cm}  p{6cm} p{7.5cm} }
 	\textbf{Autokorrelation}: 	&  
-	\multicolumn{2}{l}{$r_X(t_1,t_2)=r_X(t_1-t_2)=r_X(\tau)=R_{XX}(\tau) = E[X(t)X(t+\tau)]$} \\
-  	&	$\mid \! R_{XX}(\tau) \! \mid \leq R_{XX}(0) = E[X^{2}(t)]$ 
-	& $R_{XX}(-\tau) = R_{XX}(\tau) \quad$ (gerade, Fouriertransformation wird real)\\
+	\multicolumn{2}{l}{$r_x(t_1,t_2)=r_x(t_1-t_2)=r_x(\tau)=r_{xx}(\tau) = E[X(t)X(t+\tau)]$} \\
+  	&	$\mid \! r_{xx}(\tau) \! \mid \leq r_{xx}(0) = E[X^{2}(t)]$ 
+	& $r_{xx}(-\tau) = r_{xx}(\tau) \quad$ (gerade, Fouriertransformation wird real)\\
   \textbf{Kreuzkorrelation}:& 	
- 	$r_{XY}(\tau)=R_{XY}(\tau) = E[X(t)Y(t+\tau)]$  
-	& $R_{XY}(-\tau) = R_{YX}(\tau) \quad$ (Reihenfolge Indizes!) \\
-    & $|R_{XY}(\tau)| \leq \frac{1}{2} \left[ R_{XX}(0)+R_{YY}(0)\right] $
-	& $|R_{XY}(\tau)|  \leq \sqrt{R_{XX}(0)R_{YY}(0)}$ \\
-   \textbf{Autokovarianz }: 	&  \multicolumn{2}{l}{$C_{XX}(t_{1},t_{2}) =
-          E\left[ \left( X(t_{1})-\mu_{X}(t_{1})\right) \cdot
-                  \left( X(t_{2})-\mu_{X}(t_{2})\right) \right] =
-          R_{XX}(t_{1},t_{2}) - \mu_{X}(t_{1}) \cdot \mu_{X}(t_{2})=$}\\	
-	&\multicolumn{2}{l}{$c_X(\tau)=C_{XX}(\tau) = E\!\left[ \left( X(t)      - E[X(t)]      \right) \cdot
+ 	$r_{XY}(\tau)=r_{xy}(\tau) = E[X(t)Y(t+\tau)]$  
+	& $r_{xy}(-\tau) = r_{yx}(\tau) \quad$ (Reihenfolge Indizes!) \\
+    & $|r_{xy}(\tau)| \leq \frac{1}{2} \left[ r_{xx}(0)+r_{yy}(0)\right] $
+	& $|r_{xy}(\tau)|  \leq \sqrt{r_{xx}(0)r_{yy}(0)}$ \\
+   \textbf{Autokovarianz }: 	&  \multicolumn{2}{l}{$c_{xx}(t_{1},t_{2}) =
+          E\left[ \left( X(t_{1})-\mu_{x}(t_{1})\right) \cdot
+                  \left( X(t_{2})-\mu_{x}(t_{2})\right) \right] =
+          r_{xx}(t_{1},t_{2}) - \mu_{x}(t_{1}) \cdot \mu_{x}(t_{2})=$}\\	
+	&\multicolumn{2}{l}{$c_X(\tau)=c_{xx}(\tau) = E\!\left[ \left( X(t)      - E[X(t)]      \right) \cdot
                                   \left( X(t+\tau) - E[X(t+\tau)] \right) \right] =
-                        R_{XX}(\tau) - \mu^{2}_{X} $} \\
-   	\textbf{Kreuzkovarianz}: 	& \multicolumn{2}{l} {$C_{XY}(t_{1},t_{2}) = 
-          E\left[ \left( X(t_{1})-\mu_{X}(t_{1})\right) \cdot
-                  \left( Y(t_{2})-\mu_{Y}(t_{2})\right)^* \right] =
-          R_{XY}(t_{1},t_{2}) - \mu_{X}(t_{1}) \cdot \mu_{Y}(t_{2})=$}\\	
-   	&\multicolumn{2}{l}{$C_{XY}(\tau) = E\!\left[ \left( X(t)      - E[X(t)]      \right) \cdot
+                        r_{xx}(\tau) - \mu^{2}_{X} $} \\
+   	\textbf{Kreuzkovarianz}: 	& \multicolumn{2}{l} {$c_{xy}(t_{1},t_{2}) = 
+          E\left[ \left( X(t_{1})-\mu_{x}(t_{1})\right) \cdot
+                  \left( Y(t_{2})-\mu_{y}(t_{2})\right)^* \right] =
+          r_{xy}(t_{1},t_{2}) - \mu_{x}(t_{1}) \cdot \mu_{y}(t_{2})=$}\\	
+   	&\multicolumn{2}{l}{$c_{xy}(\tau) = E\!\left[ \left( X(t)      - E[X(t)]      \right) \cdot
                                   \left( Y(t+\tau) - E[Y(t+\tau)] \right) \right] =
-                        R_{XY}(\tau) - \mu_{X}\mu_{Y} $}\\
+                        r_{xy}(\tau) - \mu_{x}\mu_{y} $}\\
     & \multicolumn{2}{l}{Zufallsprozesse bezeichnet man als zueinander
-                        \textbf{unkorreliert}, wenn $C_{XY}(\tau) = 0$}
+                        \textbf{unkorreliert}, wenn $c_{xy}(\tau) = 0$}
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
 \textbf{Spektrale Leistung}\\
-Autokorrelationsfunktion $R_{XX}(\tau)$ und Leistungsspektraldichte $S_{XX}(\omega)$ bilden ein
+Autokorrelationsfunktion $r_{xx}(\tau)$ und Leistungsspektraldichte $P_{xx}(\omega)$ bilden ein
 Fourier-\textbf{Transformationspaar}. \\ Die Leistungsspektraldichte kann als \textbf{mittlere Leistung pro Frequenzband }aufgefasst werden, sie ist
 wie folgt definiert:                             
-        $$ E\left[ \lim\limits_{T \rightarrow \infty}
+        $$ P_{xx}(\omega) = E\left[ \lim\limits_{T \rightarrow \infty}
                                     \frac{1}{T} \cdot \mid\! X(\omega) \!\mid^{2}\right]                          
-                            = \int\limits_{-\infty}^{+\infty} R_{XX}(\tau) \cdot e^{-j\omega\tau} \; d\tau 
-                            = S_{XX}(\omega) \qquad \IFT \qquad
-        R_{XX}(\tau)   = \frac{1}{2\pi} \int\limits_{-\infty}^{+\infty} 
-                             S_{XX}(\omega) \cdot e^{j\omega\tau} \; d\omega$$ bzw:
-                             $$S_{XX}(z) = \sum\limits_{k=-\infty}^{\infty} R_{XX}(k)z^{-k}\qquad \IFT \qquad 
-                             R_{XX}(k)=\frac 1{2\pi} \int \limits_{-\pi}^{pi} S_{XX}(z)z^k$$
+                            = \int\limits_{-\infty}^{+\infty} r_{xx}(\tau) \cdot e^{-j\omega\tau} \; d\tau 
+                            \qquad \IFT \qquad
+        r_{xx}(\tau)   = \frac{1}{2\pi} \int\limits_{-\infty}^{+\infty} 
+                             P_{xx}(\omega) \cdot e^{j\omega\tau} \; d\omega$$ bzw:
+                             $$P_{xx}(z) = \sum\limits_{k=-\infty}^{\infty} r_{xx}(k)z^{-k}\qquad \IFT \qquad 
+                             r_{xx}(k)=\frac 1{2\pi} \int \limits_{-\pi}^{pi} P_{xx}(z)z^k$$
                              
-$S_{XX}(\omega)$ ist rein reell, symetriesch $(S_{XX}(z)=S_{XX}^*(\frac{1}{z^*}))$ und $\geq 0$. \\
-Kreuzkorrelationen ($R_{YX}(\tau), R_{XY}(\tau)$) und Kreuz-Spektraldichten ($S_{YX}(\tau),
-S_{XY}(\tau)$) bilden ein Fourier-Transformationspaar.
+$P_{xx}(\omega)$ ist rein reell, symetriesch $(P_{xx}(z)=P_{xx}^*(\frac{1}{z^*}))$ und $\geq 0$. \\
+Kreuzkorrelationen ($r_{yx}(\tau), r_{xy}(\tau)$) und Kreuz-Spektraldichten ($P_{yx}(\tau),
+P_{xy}(\tau)$) bilden ein Fourier-Transformationspaar.
 \begin{center}
-$ R_{YX}(\tau) \FT S_{YX}(\omega) \qquad \qquad R_{XY}(\tau) \FT S_{XY}(\omega)  $
+$ r_{yx}(\tau) \FT P_{yx}(\omega) \qquad \qquad r_{xy}(\tau) \FT P_{xy}(\omega)  $
 \end{center}
 Da die Autokorrelation sicher nicht kausal sind (auch für negative Zeitwerte definiert sind), muss die beidseitige z-Transformation angewendet werden.
 
 Die Eigenwerte der Autokorrelationmatrix haben folgende Begrenzung:\\
-$$\min\limits_\omega S_{XX}(z)\leq \lambda_i \leq \max\limits_{\omega}S_{XX}(z)$$
+$$\min\limits_\omega P_{xx}(z)\leq \lambda_i \leq \max\limits_{\omega}P_{xx}(z)$$
 
 \subsubsection{Beispiele Autokorrelation}
 \begin{tabular}{|l|l|l|}
@@ -518,29 +518,29 @@ $$\min\limits_\omega S_{XX}(z)\leq \lambda_i \leq \max\limits_{\omega}S_{XX}(z)$
 %         \multicolumn{2}{|l|}{\textbf{Beispiele Autokorrelation}} \\
     \hline
         Weisses Rauschen
-        & $R_{XX} (n) = \frac {N_0}{2} \delta(n) \FT S_{XX}(z)= \frac {N_0}{2};\hspace{0.25cm}$ & alle z\\
+        & $r_{xx} (n) = \frac {N_0}{2} \delta(n) \FT P_{xx}(z)= \frac {N_0}{2};\hspace{0.25cm}$ & alle z\\
     \hline
         Prozess erster Ordnung
-        & $R_{XX} (n) = P_s \cdot a^{|n|} \FT S_{XX} (z) = P_s \cdot \frac {1-a^2}{(1-az^{-1})(1-az)}$ & für $a<|z| < \frac{1}{a}$\\
+        & $r_{xx} (n) = P_s \cdot a^{|n|} \FT P_{xx} (z) = P_s \cdot \frac {1-a^2}{(1-az^{-1})(1-az)}$ & für $a<|z| < \frac{1}{a}$\\
     \hline
         
-        & $R_{XX} (n) = a^n(u(n) - u(n-N)) \FT S_{XX} (z) = \frac{1-a^Nz^{-N}}{1-az^{-1}}$ & für $|z| > 0$\\
+        & $r_{xx} (n) = a^n(u(n) - u(n-N)) \FT P_{xx} (z) = \frac{1-a^Nz^{-N}}{1-az^{-1}}$ & für $|z| > 0$\\
     \hline
         
-        & $R_{XX} (n) = a^n \cdot u(n) \FT S_{XX} (z) = \frac{1}{1-az^{-1}}$ & für $|z| > a$\\
+        & $r_{xx} (n) = a^n \cdot u(n) \FT P_{xx} (z) = \frac{1}{1-az^{-1}}$ & für $|z| > a$\\
     \hline
         
-        & $R_{XX} (n) = -a^n \cdot u(-n-1) \FT S_{XX} (z) = \frac{1}{1-az^{-1}}$ & für $|z| < a$\\
+        & $r_{xx} (n) = -a^n \cdot u(-n-1) \FT P_{xx} (z) = \frac{1}{1-az^{-1}}$ & für $|z| < a$\\
     \hline
         Binäres Datensignal
-        & $R_{XX} (0) = P_s = A_1^2p_1 + A_0^2 p_0 $ &\\
-        &$R_{ss} (|n| < T) = $ linearer Übergang von $R_{ss}(0)$ zu $R_{ss} (|n| = T)$ &\\
-        & $R_{XX} (|n| \geq T) = P_s = A_1^2p_1^2 + A_0A_1p_0p_1 + A_1A_0p_1p_0 + A_0^2p_0^2$ &  \\
+        & $r_{xx} (0) = P_s = A_1^2p_1 + A_0^2 p_0 $ &\\
+        &$r_{ss} (|n| < T) = $ linearer Übergang von $r_{ss}(0)$ zu $r_{ss} (|n| = T)$ &\\
+        & $r_{xx} (|n| \geq T) = P_s = A_1^2p_1^2 + A_0A_1p_0p_1 + A_1A_0p_1p_0 + A_0^2p_0^2$ &  \\
     \hline
         überlagerte Signale
-        & $R_{gg\pm}(n) = R_{ss}(n) + R_{sf}(n) + R_{sf}(-n) + R_{ff}(n) $ &\\
+        & $r_{gg\pm}(n) = r_{ss}(n) + r_{sf}(n) + r_{sf}(-n) + r_{ff}(n) $ &\\
         $g_\pm(t) = s(t) \pm f(t)$
-        &  $\FT S_{g+}(\omega) = S_{s}(\omega) + S_{f}(\omega) \pm 2 \text{Re} \{S_{sf}(\omega) \}$ &\\ 
+        &  $\FT P_{g+}(\omega) = P_{s}(\omega) + P_{f}(\omega) \pm 2 \text{Re} \{P_{sf}(\omega) \}$ &\\ 
     \hline
 \end{tabular} 
 \vspace{-0.5cm}
@@ -550,19 +550,19 @@ $$\min\limits_\omega S_{XX}(z)\leq \lambda_i \leq \max\limits_{\omega}S_{XX}(z)$
 		\multicolumn{2}{|l|}{\textbf{Numerische Berechnung}} \\
     \hline
     Autokorrelation
-        & $\hat{R}_{XX} (n) = \frac 1 N \sum\limits_{m=0}^{N-1} s(m ) s[(m+n) ] 
-                                     = \frac 1 N \sum\limits_{m=0}^{N-1} s[(m-n) ] s(m ) \DFT \hat{S}_{XX}(z)$ \\
+        & $\hat{r}_{xx} (n) = \frac 1 N \sum\limits_{m=0}^{N-1} s(m ) s[(m+n) ] 
+                                     = \frac 1 N \sum\limits_{m=0}^{N-1} s[(m-n) ] s(m ) \DFT \hat{P}_{xx}(z)$ \\
     \hline
     Kreuzkorrelation
-        & $\hat{R}_{XY} (n ) = \frac 1 N \sum\limits_{m=0}^{N-1} s(m ) f[(m+n) ] 
-                                     = \frac 1 N \sum\limits_{m=0}^{N-1} s[(m-n) ] f(m ) \DFT \hat{S}_{XY}(z) $ \\
+        & $\hat{r}_{xy} (n ) = \frac 1 N \sum\limits_{m=0}^{N-1} s(m ) f[(m+n) ] 
+                                     = \frac 1 N \sum\limits_{m=0}^{N-1} s[(m-n) ] f(m ) \DFT \hat{P}_{xy}(z) $ \\
     \hline
     Leistungsdichtespektrum 
-        & $\hat{S}_{XX}(z) = \frac 1N \left|S_T(z)\right|^2 \IDFT \hat{R}_{XX} (n )
+        & $\hat{P}_{xx}(z) = \frac 1N \left|S_T(z)\right|^2 \IDFT \hat{r}_{xx} (n )
             \qquad \text{mit} \quad S_T(z) \IDFT s(n)$\\
     \hline
     Kreuz(leistungsdichte)spektrum 
-        & $\hat{S}_{XY}(z) = \frac 1N S_T^*(z) F_T(z) \IDFT \hat{R}_{XY} (n )
+        & $\hat{P}_{xy}(z) = \frac 1N S_T^*(z) F_T(z) \IDFT \hat{r}_{xy} (n )
         \qquad \text{mit} \quad F_T(z) \IDFT f(n)$\\
 				
     \hline
@@ -574,19 +574,19 @@ Y(t) = h(t) \ast X(t)$ \vspace{0.3cm}\\
  \begin{tabular}[c]{ p{2cm}  p{8.5cm} p{8cm} }
 	& \textbf{Allgemein} & \textbf{WSS-Prozess} \\
 	\textbf{Mittelwert}
-		& $\mu_{Y}(t) = h(t) \ast \mu_{X}(t)$
-		& $\mu_{Y} = H(0) \mu_{X}$ \\
+		& $\mu_{y}(t) = h(t) \ast \mu_{x}(t)$
+		& $\mu_{y} = H(0) \mu_{x}$ \\
 	\textbf{Auto-korrelation\textcolor{red}{*}}
-		& {$R_{YY}(t_{1},t_{2}) = \int\limits_{-\infty}^{+\infty}
+		& {$r_{yy}(t_{1},t_{2}) = \int\limits_{-\infty}^{+\infty}
 		\int\limits_{-\infty}^{+\infty} h(\alpha) h(\beta)
-                      R_{XX}(t_{1}-\alpha, t_{2}-\beta) \; d\alpha \; d\beta$}
-		& {$R_{YY}(\tau) = \int\limits_{-\infty}^{+\infty}
+                      r_{xx}(t_{1}-\alpha, t_{2}-\beta) \; d\alpha \; d\beta$}
+		& {$r_{yy}(\tau) = \int\limits_{-\infty}^{+\infty}
 		\int\limits_{-\infty}^{+\infty} h(\alpha) h(\beta)
-                      R_{XX}(\tau+\alpha-\beta) \; d\alpha \; d\beta$} \\
+                      r_{xx}(\tau+\alpha-\beta) \; d\alpha \; d\beta$} \\
 	\textbf{Spektrale Leistung}
 		&
-		& $S_{YY}(\omega)= H^{\ast}(\omega) H(\omega) S_{XX}(\omega)
-			= |H(\omega)|^{2} S_{XX}(\omega)$  \\
+		& $P_{yy}(\omega)= H^{\ast}(\omega) H(\omega) P_{xx}(\omega)
+			= |H(\omega)|^{2} P_{xx}(\omega)$  \\
 \end{tabular}
 \renewcommand{\arraystretch}{1} \\
 \textcolor{red}{*} = Es ist viel einfacher die Autokorrelation aus der Spektralen Leistung
@@ -594,13 +594,14 @@ Y(t) = h(t) \ast X(t)$ \vspace{0.3cm}\\
 Ein WSS-Prozess am Eingang erzeugt auch einen WSS-Prozess am Ausgang.
 
 \subsubsection{Filterung von Zufallsprozessen}
-Die Ausgangs Autokorrelation $r_y(k)$/$R_y(k)$ ist\\
- $R_y(k) = r_x(k)\ast h(k) \ast h^*(-k)$ bzw. $\boxed{S_{Y}(z) = S_{X}(z)\cdot H(z) \cdot H^*(\frac 1 z^*)=S_X(z)\cdot|H(z)|^2}$
+Die Ausgangs Autokorrelation $r_y(k)$ ist\\
+ $r_y(k) = r_x(k)\ast h(k) \ast h^*(-k)$ bzw. $\boxed{P_{y}(z) = P_{x}(z)\cdot H(z) \cdot H^*(\frac{1}{z^*}) \quad
+  P_{y}(e^{j\omega})=P_x(e^{j\omega})\cdot|H(e^{j\omega})|^2}$
 
 \subsubsection{Weisses Rauschen}
 \begin{center}
 	\begin{minipage}{8cm}
-		$S_{XX}(\omega) = \dfrac{\eta}{2} \qquad R_{XX}(\tau) = \dfrac{\eta}{2} \cdot \delta(\tau)= \sigma_x^2 \cdot \delta(\tau)$ \\ \\
+		$P_{xx}(\omega) = \dfrac{\eta}{2} \qquad r_{xx}(\tau) = \dfrac{\eta}{2} \cdot \delta(\tau)= \sigma_x^2 \cdot \delta(\tau)$ \\ \\
 		Beispiel: therm. Rauschen von Widerständen \\
 		\textbf{Nimmt} in der Praxis im \textbf{Tera-Hz Bereich ab}!
   	\end{minipage}
@@ -615,7 +616,7 @@ Die Ausgangs Autokorrelation $r_y(k)$/$R_y(k)$ ist\\
 % 	\hline
 % 		Weisses Rauschen
 % 		& White Noise
-% 		& $S_{XX}(\omega) = \dfrac{\eta}{2}$
+% 		& $P_{xx}(\omega) = \dfrac{\eta}{2}$
 % 		& \\
 	\hline
 		\textbf{Bezeichnung (De)}
@@ -625,22 +626,22 @@ Die Ausgangs Autokorrelation $r_y(k)$/$R_y(k)$ ist\\
 	\hline
 		Rosa Rauschen
 		& Pink Noise
-		& $S_{XX}(\omega) = c \cdot \dfrac{1}{\omega}$
+		& $P_{xx}(\omega) = c \cdot \dfrac{1}{\omega}$
 		& Testsignal für Tontechnik, wegen konstanter Leistung pro Oktave \\
 	\hline
 		Braunes/Rotes Rauschen
 		& Brown/Red Noise
-		&	$S_{XX}(\omega) = c \cdot \dfrac{1}{\omega^2}$
+		&	$P_{xx}(\omega) = c \cdot \dfrac{1}{\omega^2}$
 		& \\
 	\hline
 		Blaues Rauschen
 		& Blue Noise
-		&	$S_{XX}(\omega) = c \cdot \omega$
+		&	$P_{xx}(\omega) = c \cdot \omega$
 		& \\
 	\hline
 		Violettes Rauschen
 		& Purple/Violet Noise
-		&	$S_{XX}(\omega) = c \cdot \omega^2$
+		&	$P_{xx}(\omega) = c \cdot \omega^2$
 		& \\
     \hline
 \end{tabular}
