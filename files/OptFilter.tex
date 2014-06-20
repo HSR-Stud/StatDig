@@ -1,5 +1,5 @@
 \section{Optimum Filters}
-A optimum filter minimize the mean-square error $\xi = E\left(|e(n)|^2\right)$ of: \\
+A optimum filter minimize the mean-square error $\xi = E\left(|e(n)|^2\right) \quad x(n)=d(n)+v(n) \quad e(n) = d(n) - \tilde{d}(n)$\\
 \includegraphics[width=9cm]{../StatDig/bilder/optimumFilter.jpg}\\
 The minimal error is \textbf{always orthogonal} to the data: $E(e(n)x^*(n-k))=0$ $\forall$ $k\epsilon[0,p-1]$
 
@@ -15,17 +15,17 @@ Minimum Error: \>		$\xi_{min}=r_d(0)-\sum \limits_{l=0}^l w(l)r_{dx}^{*}(l)$
 \end{tabbing}
 \end{minipage}
 \begin{minipage}{10cm}
-$\hookrightarrow  		\small
+$\small
 \underbrace{\begin{bmatrix}                   
-    		r_x[0] & r_x^*[1] & \hdots & r_x^*[p] \\   
-    		r_x[1] & r_x[0] & \hdots & r_x^*[p-1] \\    
+    		r_x[0] & r_x^*[1] & \hdots & r_x^*[p-1] \\   
+    		r_x[1] & r_x[0] & \hdots & r_x^*[p-2] \\    
     		\vdots & \vdots & \ddots & \vdots \\     
-    		r_x[p] & r_x[q+1] & \hdots & r_x[0] \\ 
+    		r_x[p-1] & r_x[p-2] & \hdots & r_x[0] \\ 
 		\end{bmatrix}  }_{R_x} \cdot \underbrace{\begin{bmatrix}
     		w(0) \\
     		w(1) \\
     		\vdots \\
-    		w(p)
+    		w(p-1)
 		\end{bmatrix}  }_{w}= \underbrace{\begin{bmatrix}
     		 r_{dx}[0]\\            
     		 r_{dx}[1]\\
@@ -38,7 +38,8 @@ $$R_x \cdot w =r_{dx}$$
 \begin{minipage}{7.5cm}
 \subsubsection{Filtering \hayes{339}}
 The input signal is $x(n)=d(n)+v(n)$. Because the noise and the data signal is uncorrollated and the noise has zero mean, the Wiener-Hopf equation simplify follow:\\
-$[R_d + R_v]\cdot w = r_d$ with $R_v=\small \begin{bmatrix}                   
+$r_x(k)=r_d(k)+r_v(k) \rightarrow [R_d + R_v]\cdot w = r_d$\\
+ with $R_v=\small \begin{bmatrix}                   
     		\sigma_v^2 & \hdots & 0\\   
     		\vdots & \ddots & \vdots \\     
     		0&  \hdots &\sigma_v^2 \\ 
@@ -47,13 +48,13 @@ $[R_d + R_v]\cdot w = r_d$ with $R_v=\small \begin{bmatrix}
 \hspace{5mm}
 \begin{minipage}{10cm}
 \subsubsection{Linear Prediction FIR \hayes{342}}
-$\hat{x}(n+\alpha)=\sum \limits_{k=0}^{p-1} w(k)x(n-k)$
+$\hat{x}(n+\alpha)=\sum \limits_{k=0}^{p-1} w(k)[x(n-k)+v(n-k)]$
 
 $ 	\hookrightarrow  	\small \begin{bmatrix}                   
-    		r_x[0] & r_x^*[1] & \hdots & r_x^*[p] \\   
-    		r_x[1] & r_x[0] & \hdots & r_x^*[p-1] \\    
+    		r_y[0] & r_y^*[1] & \hdots & r_y^*[p-1] \\   
+    		r_y[1] & r_y[0] & \hdots & r_y^*[p-2] \\    
     		\vdots & \vdots & \ddots & \vdots \\     
-    		r_x[q] & r_x[q+1] & \hdots & r_x[0] \\ 
+    		r_y[p-1] & r_y[p-2] & \hdots & r_y[0] \\  
 		\end{bmatrix}   \cdot \begin{bmatrix}
     		w(0) \\
     		w(1) \\
@@ -66,7 +67,7 @@ $ 	\hookrightarrow  	\small \begin{bmatrix}
     		 r_{x}[\alpha+q]\\
 		\end{bmatrix}
 $$ \normalsize	 $\\
-$\alpha$ are the steps to predict.\\
+$\alpha$ are the steps to predict. Noise: $r_y(k) = r_x(k) + r_(k)v$\\
 \end{minipage}\\
 \begin{minipage}{11.5cm}
 \subsubsection{Linear Phase Filter \hayes{17}, exercise 9.16} 
@@ -107,7 +108,7 @@ Correlations: \>
 
 
 Minimum Error:\>
-	$\xi_{min} =r_d(0)-\sum \limits_{l=-\infty}^\infty w(l)r_{dx}^{*}(l)$
+	$\xi_{min} =r_d(0)-\sum \limits_{l=-\infty}^\infty h(l)r_{dx}^{*}(l)$
 	=$\frac{1}{2\pi}\int \limits_{-\pi}^\pi[P_d(e^{jw})-H(e^{jw})P_{dx}^{*}(e^{jw})]dw$
 \end{tabbing}
 
@@ -115,13 +116,15 @@ Minimum Error:\>
 
 \subsubsection{Causal \hayes{358}}
 \begin{tabbing}
-System function:\hspace{1.2cm}\=
-$H(z)=\frac{1}{\sigma_0^2 Q(z) } [\frac{P_{dx}(z)}{Q^*(z^{-1})} ]_+ $ \\
-
-Spectral Factorization: \>
+Spectral Factorization: \=
 $ P_x(z) = \sigma_0^2 Q(z) Q^*(z^{-1}) $\\
+
+System function:\hspace{1.2cm}\>
+	$H(z)=\frac{1}{\sigma_0^2 Q(z) } [\frac{P_{dx}(z)}{Q^*(z^{-1})} ]_+ $ \\
+	
 Minimum Error:\>$\xi_{min} =r_d(0)-\sum \limits_{l=0}^\infty h(l)r_{dx}^{*}(l)
 	=\frac{1}{2\pi}\int \limits_{-\pi}^\pi[P_d(e^{jw})-H(e^{jw})P_{dx}^{*}(e^{jw})]dw$\\
+	
 \end{tabbing}
 Example \hayes{362}
 
@@ -129,15 +132,15 @@ Example \hayes{362}
 \begin{tabbing}
 System function:\hspace{1.2cm}\=
 	$ r_{dx}(k)=r_x(k+\alpha)  \text {;   }\alpha\text { = steps to predict.} $\\
-\>	$ H(z)= \frac{1}{Q(z)}[z^a Q(z)]_+ \rightarrow monic, one step: H(z) = z [1- \frac{1}{Q(z)}] $\\
+\>	$ H(z)= \frac{1}{Q(z)}[z^\alpha Q(z)]_+ \rightarrow monic, one step: H(z) = z [1- \frac{1}{Q(z)}] $\\
 Minimum Error:\>
-	$\xi_{min} = \sigma^2_0 \cdot q(0)$\\
+	$\xi_{min} = \sigma^2_0$\\
 \end{tabbing}
 
 
 \subsubsection{Wiener Deconvolution \hayes{369}}
 Deconvolutate a signal $x(n)=d(n)\ast g(n) + w(n)$ (not $x(n)=d(n) + g(n)$) it's not easy. At the best, the signal could be reconstruct as:
-$\hat{D}(e^{\omega})=D(e^{j\omega}) + \frac{W(e^{j\omega})}{G(e^{j\omega})}=D(e^{j\omega})+V(e^{j\omega})$. $V(e^{j\omega})$ isn't anymore white noise. 
+$\hat{D}(e^{\omega})=D(e^{j\omega}) + \frac{W(e^{j\omega})}{G(e^{j\omega})}=D(e^{j\omega})+V(e^{j\omega})$ \quad $V(e^{j\omega})$ isn't anymore white noise. 
 Espacialy if $G(e^{j\omega})$ becomes small the noise will be amplified.\\
 System function:\hspace{1.2cm}
 	$ H(z)= \frac{1}{G(z)}\left[\frac{P_d(z)}{P_d(z)+P_w(z)/|G(z)|^2}\right]$\\

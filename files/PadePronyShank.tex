@@ -6,6 +6,8 @@
   \textbf{Ziel: } Die Koeffizienten für ein Filter berechnen, dessen
   Impulsantwort möglichst genau mit einer gegebenen Signal ($x[n]$ - mit
   Länge $n$) übereinstimmt.
+  
+      $$ y(n) = \sum\limits_{k=0}^{q} b(k)x(n-k) - \sum\limits_{k=1}^{p} a(k)y(n-k)$$
       $$ H(z) = \dfrac{B(z)}{A(z)} = \dfrac{b_0 + b_1z^{-1} + b_2 z^{-2} + \dots +
       b_q z^{-q}}{1 + a_1z^{-1} + a_2 z^{-2} + \dots + a_p z^{-p}} $$ 
 
@@ -83,48 +85,51 @@ gegebenem Signal $x[n]$ überein, nachher ist der Filter nicht einmal zwingend s
 	%\vspace{-0.5cm}
 	\renewcommand{\arraystretch}{1.0}
 	\begin{aufzaehlung}
-  		\item $a$-Koeffizienten / Pole berechnen: $a_t = - \bm X_t^{-1} \cdot x$ \matlab{$a_t = - X_t \backslash x$} \small $$
+  		\item $a$-Koeffizienten / Pole berechnen: $\bm X_q \cdot a_p = -x_{q+1} \Longrightarrow a_p = - \bm X_q^{-1} \cdot x_{q+1}$ \matlab{$a_t = - X_t \backslash x$} \small $$
 	%	\begin{matrix} n=q+1\\ n=q+2\\ \vdots \\ n=q+p \end{matrix}
-		\overset{(0 \hdots p)}{\underbrace{\begin{bmatrix}
-    		x[q+1] & x[q] & \hdots & x[q+1-p] \\                                   
-    		x[q+2] & x[q+1] & \hdots & x[q+2-p] \\
-    		\vdots & \vdots & \ddots & \vdots \\                             
-    		x[q+p] & x[q+p-1] & \hdots & x[q] \\
-		\end{bmatrix}  }_{\bm X}} \cdot \underbrace{\begin{bmatrix}
-    		1 \\
-    		a_1 \\
-    		\vdots \\
-    		a_p
-		\end{bmatrix}  }_{a} = \begin{bmatrix}
-    		0 \\
-    		0 \\
-    		\vdots \\
-    		0
-		\end{bmatrix} \Longleftrightarrow 
 		\underbrace{ \begin{bmatrix}
     		x[q]     & x[q-1]   & \hdots & x[q-p+1] \\                                   
     		x[q+1]   & x[q]     & \hdots & x[q-p+2] \\
     		\vdots   & \vdots   & \ddots & \vdots \\                             
     		x[q+p-1] & x[q+p-2] & \hdots & x[q] \\
 		\end{bmatrix}  
-		}_{\bm  X_t} \cdot 
+		}_{\bm  X_q} \cdot 
 		\underbrace{\begin{bmatrix}
     		a_1 \\
     		a_2 \\
     		\vdots \\
     		a_p
-		\end{bmatrix}  }_{a_t} = \underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{a_p} = \underbrace{\begin{bmatrix}
     		-x [q+1]\\            
     		-x [q+2]\\
     		\vdots \\
     		-x [q+p]\\
-		\end{bmatrix}}_{x} $$  \normalsize
+		\end{bmatrix}}_{x_{q+1}}  \Longleftrightarrow 
+		\begin{bmatrix}
+    		x[q+1] & x[q] & \hdots & x[q+1-p] \\                                   
+    		x[q+2] & x[q+1] & \hdots & x[q+2-p] \\
+    		\vdots & \vdots & \ddots & \vdots \\                             
+    		x[q+p] & x[q+p-1] & \hdots & x[q] \\
+		\end{bmatrix}
+		\begin{bmatrix}
+    		1 \\
+    		a_1 \\
+    		\vdots \\
+    		a_p
+		\end{bmatrix} = 
+		\begin{bmatrix}
+    		0 \\
+    		0 \\
+    		\vdots \\
+    		0
+		\end{bmatrix} 
+		$$  \normalsize
 		
 		\vspace{-0.5cm}
 		Falls A singulär ist, war die Annahme, dass $a_0 = 1$ falsch. $\Longrightarrow$ $a_0=0$ setzen. 
-		$ \Longrightarrow \bm X_t \cdot \bm a_t = \bm 0$
+		$ \Longrightarrow \bm X_q \cdot \bm a_p = \bm 0$
 		
-  		\item $b$-Koeffizienten / Nullstellen berechnen: $b = \bm X_0 \cdot a$ \small \hspace{0.5cm}
+  		\item $b$-Koeffizienten / Nullstellen berechnen: $\bm X_0 \cdot a_p = b_q$ \small \hspace{0.5cm}
 		$ \begin{matrix} n=0\\ n=1\\ \vdots\\ n=q \end{matrix} \overset{(0 \hdots p)}{\underbrace{\begin{bmatrix}
     		x[0] & 0 & \hdots & 0 \\
     		x[1] & x[0] & \hdots & 0 \\
@@ -135,12 +140,12 @@ gegebenem Signal $x[n]$ überein, nachher ist der Filter nicht einmal zwingend s
     		a_1 \\
     		\vdots \\
     		a_p
-		\end{bmatrix}  }_{a}= 	\underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{a_p}= 	\underbrace{\begin{bmatrix}
 	    		b_0 \\
 	    		b_1 \\
 	    		\vdots \\
 	    		b_q
-			\end{bmatrix}}_{b}$ \normalsize
+			\end{bmatrix}}_{b_q}$ \normalsize
 			
 	\end{aufzaehlung}
 	
@@ -156,24 +161,41 @@ angenähert.
 \renewcommand{\arraystretch}{1.0}
 
 \begin{aufzaehlung}
-	\item Autokorrelation berechnen: $ r_x(k,l) = \sum\limits_{n=q+1}^\infty x(n-l)x^*(n-k)$;\qquad $k,l\geq l$
-	\item $a$-Koeffizienten berechnen : $a_t = - \bm R_t^{-1} \cdot x$ 
-  		\matlab{$a_t = A_t \backslash x$} \small\\
+	\item Autokorrelation berechnen: $ r_x(k,l) = \sum\limits_{n=q+1}^\infty x(n-l)x^*(n-k)$;\qquad $k,l\geq 0$
+	\item $a$-Koeffizienten berechnen : $\bm R_x \cdot a_p = -r_x \Longrightarrow a_p = - \bm R_x^{-1} \cdot r_x$ 
+  		\matlab{$a_p = - R_x \backslash r_x$} \small\\
 		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0,0) + \sum\limits_{k=1}^p a_k r_x(0,k)$
 			$$
-		{\underbrace{\begin{bmatrix}
+		\underbrace{\begin{bmatrix}
+    		r_x[1,1] & r_x[1,2] & \hdots & r_x[1,p] \\                                   
+    		r_x[2,1] & r_x[2,2] & \hdots & r_x[2,p] \\
+    		\vdots & \vdots & \ddots & \vdots \\                             
+    		r_x[p,0] & r_x[p,2] & \hdots & r_x[p,p] \\                        
+		\end{bmatrix}  }_{\bm R_x} \cdot 
+		\underbrace{\begin{bmatrix}
+    		a_1 \\
+    		\vdots \\
+    		a_p
+		\end{bmatrix}  }_{a_p}= -\underbrace{\begin{bmatrix}
+    		r_x[1,0] \\
+    		\vdots \\
+    		r_x[p,0]
+		\end{bmatrix}  }_{r_x}
+		\Longrightarrow
+		\begin{bmatrix}
     		r_x[0,0] & r_x[0,1] & \hdots & r_x[0,p] \\ 
     		----&----&----&----\\
     		r_x[1,0] & r_x[1,1] & \hdots & r_x[1,p] \\                                   
     		r_x[2,0] & r_x[2,1] & \hdots & r_x[2,p] \\
     		\vdots & \vdots & \ddots & \vdots \\                             
     		r_x[p,0] & r_x[p,1] & \hdots & r_x[p,p] \\                        
-		\end{bmatrix}  }_{\bm R_t}} \cdot \underbrace{\begin{bmatrix}
+		\end{bmatrix} \cdot 
+		\begin{bmatrix}
     		1 \\
     		a_1 \\
     		\vdots \\
     		a_p
-		\end{bmatrix}  }_{a_t}= \begin{bmatrix}
+		\end{bmatrix} = \begin{bmatrix}
     		\epsilon_{p,q} \\
     		---\\
     		0 \\
@@ -182,7 +204,7 @@ angenähert.
 		\end{bmatrix} $$ 
 		Für All-Pole Modelle können die a-Koeffizienten direkt aus dem b Gleichungsystem berechnet werden. 
 		Dafür müssen alle $b$-Koeffizienten bis auf $b_0$ auf 0 gesetzt werden.
-	\item $b$-Koeffizienten berechnen wie bei \textbf{Padé}: $b = \bm X_0 \cdot a$ 
+	\item $b$-Koeffizienten berechnen wie bei \textbf{Padé}: $\bm X_0 \cdot a_p = b_q$ 
 		\normalsize
 \end{aufzaehlung}
 	
@@ -193,12 +215,12 @@ Die B Koeffizient werden bei gegebenen A's so geschätzt, dass die resultierende
 Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A- Koeffizenten auch noch alle Signalwerte einbeziehen würden (Least-square).
 
 \begin{aufzaehlung}
-  		\item $a$-Koeffizienten berechnen wie bei \textbf{Prony}: $a_t = \bm X_t^{-1} \cdot x$ \matlab{$a_t = X_t \backslash x$}  
+  		\item $a$-Koeffizienten berechnen wie bei \textbf{Prony}: $a_p = - \bm R_x^{-1} \cdot r_x$ \matlab{$a_p = - R_x \backslash r_x$}  
   		\item Impulsantwort $g[n]$ des rein rekursiven Filters ($g[n] = \delta(n)- \sum\limits_{k=1}^p a_p(k)g(n-k)$) berechnen, 
   		oder mittels inversen z-Transformation von $H(z)$.
-  		\item Autokorrelation berechenen:  $r_g(k-l)=\sum\limits_{n=0}^\infty g(n-l)g^*(n-k)$; oder inverse z-Transformation von $|H(z)|^2$
-  		\item Kreuzkorrelation berechnen: $r_{xg}(k-l)=\sum\limits_{n=0}^\infty x(n-l)g^*(n-k)$
-  		\item $b$-Koeffizienten berechnen (für stationäre Prozesse): $b = R^{-1} \cdot r_{xg}$ \matlab{$b = C \backslash x$}\\
+  		\item Autokorrelation berechenen:  $r_g(k)=\sum\limits_{n=0}^\infty g(n)g^*(n-k)$; oder inverse z-Transformation von $|H(z)|^2$
+  		\item Kreuzkorrelation berechnen: $r_{xg}(k)=\sum\limits_{n=0}^\infty x(n)g^*(n-k)$
+  		\item $b$-Koeffizienten berechnen (für stationäre Prozesse): $b_q = R_g^{-1} \cdot r_{xg}$ \matlab{$b_q = R_g \backslash r_{xg}$}\\
   		für\\
   		
 			
@@ -208,18 +230,51 @@ Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A- 
     		r_g(1) & r_g(0) & \hdots & r_g(q-1) \\         
     		\vdots & \vdots & \ddots & \vdots \\                                      
     		r_g(q) &r_g(q-1) & \hdots & r_g(0) \\    
-		\end{bmatrix}  }_{R}} \cdot \underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{R_g}} \cdot \underbrace{\begin{bmatrix}
     		b_0 \\
     		b_1 \\
     		\vdots \\
     		b_q
-		\end{bmatrix}  }_{b}= \underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{b_q}= \underbrace{\begin{bmatrix}
     		r_{xg}(0) \\
     		r_{xg}(1) \\
     		\vdots \\
     		r_{xg}(q) \\
-		\end{bmatrix}  }_{x} $$   \normalsize
+		\end{bmatrix}  }_{r_{gx}} $$   \normalsize
 \end{aufzaehlung}
+
+\newpage
+\subsection{All-Pole Modeling \hayes{160}}
+\begin{aufzaehlung}
+	\item Autokorrelation berechnen: $ r_x(k) = \sum\limits_{n=0}^\infty x(n)x^*(n-k)$;\qquad $k\geq 0$
+	\item $a$-Koeffizienten berechnen : $\bm R_x \cdot a_p = -r_x \Longrightarrow a_p = - \bm R_x^{-1} \cdot r_x$ 
+  		\matlab{$a_p = - R_x \backslash r_x$} \small\\
+		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0) + \sum\limits_{k=1}^p a_k r_x(k)$
+			$$
+		\underbrace{\begin{bmatrix}
+    		r_x(0) & r_x(1) & \hdots & r_x(p-1) \\                                   
+    		r_x(1) & r_x(0) & \hdots & r_x(p-2) \\
+    		\vdots & \vdots & \ddots & \vdots \\                             
+    		r_x(p-1) & r_x(p-2) & \hdots & r_x(0) \\                        
+		\end{bmatrix}  }_{\bm R_x} \cdot 
+		\underbrace{\begin{bmatrix}
+    		a_1 \\
+    		\vdots \\
+    		a_p
+		\end{bmatrix}  }_{a_p}= -\underbrace{\begin{bmatrix}
+    		r_x(1) \\
+    		\vdots \\
+    		r_x(p)
+		\end{bmatrix}  }_{r_x}$$ 
+	\item $b(0) = \sqrt{\epsilon_p}$ 
+		\normalsize
+\end{aufzaehlung}
+
+\subsection{Linear Prediction \hayes{165}}
+ToDo
+
+\subsection{FIR Inverse Filter \hayes{166} sowie Aufgabe 4.13}
+ToDo
 
 \clearpage
 \subsection{Approximation mit begrenzten  Daten mit All-Pole Filter}
@@ -229,8 +284,8 @@ Annahme: Die Daten $x[n]$ sind ausserhalb des Definitionsbereichs ($n=[0..N]$) N
 \renewcommand{\arraystretch}{1.0}
 
 \begin{aufzaehlung}
-	\item $a$-Koeffizienten berechnen (mittels Pseudoinverse / generalisierte Inverse): $a_t = \left(\bm X_t^T \cdot \bm  X_t\right)^{-1} \cdot \bm X_t^T \cdot x$
-  		\matlab{$a_t = X_t \backslash x$} \small
+	\item $a$-Koeffizienten berechnen (mittels Pseudoinverse / generalisierte Inverse): $a_p = -\left(\bm X_p^T \cdot \bm  X_p\right)^{-1} \cdot \bm X_p^T \cdot x_1$
+  		\matlab{$a_p = -X_p \backslash x_1$} \small
 			$$
 		\begin{matrix} n=q+1\\ n=q+2\\ \vdots \\ n=N\\ n=N+1\\ \vdots \\ N+p
 		\end{matrix}
@@ -249,12 +304,11 @@ Annahme: Die Daten $x[n]$ sind ausserhalb des Definitionsbereichs ($n=[0..N]$) N
     		0 & x[N] & \hdots & x[N+2-p] \\
     		\vdots & \vdots & \ddots & \vdots \\                     
     		0 & 0 & \hdots & x[N] \\
-		\end{bmatrix}  }_{\bm X_t=(N+p \; \times \; p) Matrixe} \cdot \underbrace{\begin{bmatrix}
-    		1 \\
+		\end{bmatrix}  }_{\bm X_p=(N+p \; \times \; p) Matrixe} \cdot \underbrace{\begin{bmatrix}
     		a_1 \\
     		\vdots \\
     		a_p
-		\end{bmatrix}  }_{a_t}= \underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{a_p}= \underbrace{\begin{bmatrix}
     		 -x [1]\\            
     		 -x [2]\\
     		\vdots \\
@@ -262,7 +316,7 @@ Annahme: Die Daten $x[n]$ sind ausserhalb des Definitionsbereichs ($n=[0..N]$) N
     		0 \\
     		\vdots \\
     		0
-		\end{bmatrix}}_{x} 
+		\end{bmatrix}}_{x_1} 
 		 $$ \normalsize
 	\end{aufzaehlung}
 	
@@ -270,26 +324,25 @@ Annahme: Die Daten $x[n]$ sind ausserhalb des Definitionsbereichs ($n=[0..N]$) N
 Es werden keine Annahmen getroffen, nur die vorhanden Daten werden verwendet. Der Nachteil ist, dass das Filter instabil werden kann. 
 Ein weiterer Nachteil ist, dass A keine Toeplitz Matrixe ist, so dass das Auflösen nicht so einfach ist wie bei der Autokorrelation Methode. 
 Das Signal wird jedoch genauer rekonstruiert. Bei einer Datenreihe, welche einer Impulsantwort entspricht, wird der Filter perfekt rekonstruiert. 
-Mit dem Nachteil, dass auch die instabilen Pole implementiert werden. $ a_t= \bm X_t^{-1}\cdot x$ \matlab{$a_t = A_t \backslash x$} \small
+Mit dem Nachteil, dass auch die instabilen Pole implementiert werden. $a_p = -\left(\bm X_p^T \cdot \bm  X_p\right)^{-1} \cdot \bm X_p^T \cdot x_p$ \matlab{$a_p = -X_p \backslash x_p$} \small
 		$$
 		\underbrace{\begin{bmatrix}               
     		x[p-1] & x[p-2] & \hdots & x[0] \\                                   
     		x[p] & x[p-1] & \hdots & x[1] \\      
     		\vdots & \vdots & \ddots & \vdots \\                        
     		x[N-1] & x[N-2] & \hdots & x[N-p] \\ 
-		\end{bmatrix}  }_{\bm X_t} \cdot \underbrace{\begin{bmatrix}
-    		1 \\
+		\end{bmatrix}  }_{\bm X_p} \cdot \underbrace{\begin{bmatrix}
     		a_1 \\
     		\vdots \\
     		a_p
-		\end{bmatrix}  }_{a}= \underbrace{\begin{bmatrix}
-    		 -x[p+1]\\            
-    		 -x[p+2]\\
+		\end{bmatrix}  }_{a_p}= \underbrace{\begin{bmatrix}
+    		 -x[p]\\            
+    		 -x[p+1]\\
     		\vdots \\
     		 -x[N]\\
-		\end{bmatrix}}_{x} 
+		\end{bmatrix}}_{x_p} 
 		 $$ \normalsize
-\vspace{-0.5cm}
+\vspace{-0.6cm}
 
 \subsection{Stochastische Modelle}
 Bei stochastischen Modellen werden generell die gleichen Modelle verwendet, wie in der deterministischen Welt. 
@@ -304,13 +357,13 @@ die \textbf{erweiterten Yule-Walker Gleichungen} gelöst:
 \small$$
 \underbrace{\begin{bmatrix}               
     		r_x[0] & r_x^*[1] & \hdots & r_x^*[p] \\   
-    		r_x[1] & r_x^*[2] & \hdots & r_x^*[p-1] \\   
+    		r_x[1] & r_x^*[0] & \hdots & r_x^*[p-1] \\   
     		\vdots & \vdots & \ddots & \vdots \\     
     		r_x[q] & r_x[q-1] & \hdots & r_x[q-p] \\   
     		r_x[q+1] & r_x[q] & \hdots & r_x[q-p+1] \\    
     		\vdots & \vdots & \ddots & \vdots \\     
     		r_x[L] & r_x[L-1] & \hdots & r_x[L-p] \\ 
-		\end{bmatrix}  }_{R} \cdot \underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{R_x} \cdot \underbrace{\begin{bmatrix}
     		1\\
     		a_p(1) \\
     		a_p(2) \\
@@ -356,6 +409,7 @@ die \textbf{erweiterten Yule-Walker Gleichungen} gelöst:
     		\vdots & \vdots & \ddots & \vdots \\     
     		r_x[q] & r_x[q+1] & \hdots & r_x[0] \\ 
 		\end{bmatrix}  }_{R_x} \cdot \underbrace{\begin{bmatrix}
+			1 \\
     		a_p(1) \\
     		a_p(2) \\
     		\vdots \\
