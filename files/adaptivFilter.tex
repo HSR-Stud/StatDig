@@ -80,7 +80,7 @@ The NLMS is most command used, because it's easy to program, fast to compute and
 The idea is to adapt also the stepsize $\mu(n)=\frac{\beta}{\|x(n)\|^2} \Rightarrow $
 $\boxed{w_{n+1}=w_n +\beta \frac{x^*(n)}{\epsilon+\|x(n)\|^2}e(n)}$\\
 \begin{liste}
-	\item $\|x(n)\|^2$ is the signal power $\to \frac{1}{p+1} \sum\limits_{k=0}^{p} | x(n-k) |^2 $, recursively: $\|x(n+1)\|^2 =  \|x(n)\| + |x(n+1)|^2 -|x(n-p)|^2$
+	\item $\|x(n)\|^2$ is the squared sum over $p+1$ samples $\to \sum\limits_{k=0}^{p} | x(n-k) |^2 $, recursively: $\|x(n+1)\|^2 =  \|x(n)\| + |x(n+1)|^2 -|x(n-p)|^2$
  	\item $\epsilon$ is used for small $\|x(n)\|$ (numerical stability)
 	\item $\beta$ is a normalized step size with $0 < \beta < 2$
 \end{liste}
