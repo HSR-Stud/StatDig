@@ -130,11 +130,12 @@ Example \hayes{362}
 
 \subsubsection{Linear Prediction IIR \hayes{365}}
 \begin{tabbing}
-System function:\hspace{1.2cm}\=
-	$ r_{dx}(k)=r_x(k+\alpha)  \text {;   }\alpha\text { = steps to predict.} $\\
-\>	$ H(z)= \frac{1}{Q(z)}[z^\alpha Q(z)]_+ \rightarrow monic, one step: H(z) = z [1- \frac{1}{Q(z)}] $\\
+System function:\hspace{0.2cm}\=
+	$ r_{dx}(k)=r_x(k+\alpha)  \qquad \alpha \text{ = steps to predict.} $\\
+\>	$ H(z)= \frac{1}{Q(z)}[z^\alpha Q(z)]_+ $ \hspace{6.8cm} \=$\rightarrow \text{monic, one step } H(z) = z [1- \frac{1}{Q(z)}] $\\
 Minimum Error:\>
-	$\xi_{min} = \sigma^2_0$\\
+	$\xi_{min} =r_d(0)-\sum \limits_{l=0}^\infty h(l)r_{dx}^{*}(l)
+		=\frac{1}{2\pi}\int \limits_{-\pi}^\pi[P_d(e^{jw})-H(e^{jw})P_{dx}^{*}(e^{jw})]dw $\>$ \rightarrow \text{monic, one step } \xi_{min} = \sigma^2_0$\\
 \end{tabbing}
 
 
