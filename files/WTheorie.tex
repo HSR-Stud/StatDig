@@ -497,9 +497,12 @@ wie folgt definiert:
                             = \int\limits_{-\infty}^{+\infty} r_{xx}(\tau) \cdot e^{-j\omega\tau} \; d\tau 
                             \qquad \IFT \qquad
         r_{xx}(\tau)   = \frac{1}{2\pi} \int\limits_{-\infty}^{+\infty} 
-                             P_{xx}(\omega) \cdot e^{j\omega\tau} \; d\omega$$ bzw:
-                             $$P_{xx}(z) = \sum\limits_{k=-\infty}^{\infty} r_{xx}(k)z^{-k}\qquad \IFT \qquad 
-                             r_{xx}(k)=\frac 1{2\pi} \int \limits_{-\pi}^{pi} P_{xx}(z)z^k$$
+                             P_{xx}(\omega) \cdot e^{j\omega\tau} \; d\omega$$ 
+        bzw:
+         
+        $$P_{xx}(z) = \sum\limits_{k=-\infty}^{\infty} r_{xx}(k)z^{-k}\qquad \IFT \qquad 
+       	r_{xx}(k)=\frac 1{2\pi} \int \limits_{-\pi}^{\pi} P_{xx}(e^{jw})e^{jkw}dw \qquad 
+       	r_{xx}(0) =\frac 1{2\pi} \int \limits_{-\pi}^{\pi} P_{xx}(e^{jw})dw = \lim\limits_{z \rightarrow 0} P_{xx}(z)$$
                              
 $P_{xx}(\omega)$ ist rein reell, symetriesch $(P_{xx}(z)=P_{xx}^*(\frac{1}{z^*}))$ und $\geq 0$. \\
 Kreuzkorrelationen ($r_{yx}(\tau), r_{xy}(\tau)$) und Kreuz-Spektraldichten ($P_{yx}(\tau),

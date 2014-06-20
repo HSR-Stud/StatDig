@@ -38,7 +38,8 @@ $$R_x \cdot w =r_{dx}$$
 \begin{minipage}{7.5cm}
 \subsubsection{Filtering \hayes{339}}
 The input signal is $x(n)=d(n)+v(n)$. Because the noise and the data signal is uncorrollated and the noise has zero mean, the Wiener-Hopf equation simplify follow:\\
-$r_x(k)=r_d(k)+r_v(k) \rightarrow [R_d + R_v]\cdot w = r_d$\\
+$r_x(k)=r_d(k)+r_v(k)$\\
+$r_{dx}(k)=r_d(k) \hspace{1.5cm} \rightarrow [R_d + R_v]\cdot w = r_d$\\
  with $R_v=\small \begin{bmatrix}                   
     		\sigma_v^2 & \hdots & 0\\   
     		\vdots & \ddots & \vdots \\     
@@ -67,7 +68,7 @@ $ 	\hookrightarrow  	\small \begin{bmatrix}
     		 r_{x}[\alpha+q]\\
 		\end{bmatrix}
 $$ \normalsize	 $\\
-$\alpha$ are the steps to predict. Noise: $r_y(k) = r_x(k) + r_(k)v$\\
+$\alpha$ are the steps to predict. Noise: $r_y(k) = r_x(k) + r_v(k)$\\
 \end{minipage}\\
 \begin{minipage}{11.5cm}
 \subsubsection{Linear Phase Filter \hayes{17}, exercise 9.16} 
@@ -108,8 +109,9 @@ Correlations: \>
 
 
 Minimum Error:\>
-	$\xi_{min} =r_d(0)-\sum \limits_{l=-\infty}^\infty h(l)r_{dx}^{*}(l)$
-	=$\frac{1}{2\pi}\int \limits_{-\pi}^\pi[P_d(e^{jw})-H(e^{jw})P_{dx}^{*}(e^{jw})]dw$
+	$\xi_{min} =r_d(0)-\sum \limits_{l=-\infty}^\infty h(l)r_{dx}^{*}(l)
+	=\frac{1}{2\pi}\int \limits_{-\pi}^\pi[P_d(e^{jw})-H(e^{jw})P_{dx}^{*}(e^{jw})]dw$\\
+	\>$=r_d(0)-\frac{1}{2\pi}\int \limits_{-\pi}^\pi[H(e^{jw})P_{dx}^{*}(e^{jw})]dw$
 \end{tabbing}
 
 \end{minipage}
