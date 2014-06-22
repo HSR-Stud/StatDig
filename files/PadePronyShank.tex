@@ -164,13 +164,13 @@ angenähert.
 	\item Autokorrelation berechnen: $ r_x(k,l) = \sum\limits_{n=q+1}^\infty x(n-l)x^*(n-k)$;\qquad $k,l\geq 0$
 	\item $a$-Koeffizienten berechnen : $\bm R_x \cdot a_p = -r_x \Longrightarrow a_p = - \bm R_x^{-1} \cdot r_x$ 
   		\matlab{$a_p = - R_x \backslash r_x$} \small\\
-		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0,0) + \sum\limits_{k=1}^p a_k r_x(0,k)$
+		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0,0) + \sum\limits_{k=1}^p a_p(k) r_x(0,k)$
 			$$
 		\underbrace{\begin{bmatrix}
     		r_x[1,1] & r_x[1,2] & \hdots & r_x[1,p] \\                                   
     		r_x[2,1] & r_x[2,2] & \hdots & r_x[2,p] \\
     		\vdots & \vdots & \ddots & \vdots \\                             
-    		r_x[p,0] & r_x[p,2] & \hdots & r_x[p,p] \\                        
+    		r_x[p,1] & r_x[p,2] & \hdots & r_x[p,p] \\                        
 		\end{bmatrix}  }_{\bm R_x} \cdot 
 		\underbrace{\begin{bmatrix}
     		a_1 \\
@@ -240,16 +240,17 @@ Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A- 
     		r_{xg}(1) \\
     		\vdots \\
     		r_{xg}(q) \\
-		\end{bmatrix}  }_{r_{gx}} $$   \normalsize
+		\end{bmatrix}  }_{r_{gx}} $$
 \end{aufzaehlung}
 
 \newpage
 \subsection{All-Pole Modeling \hayes{160}}
+Entspricht: \ref{sec:autoregressive_model_method}
 \begin{aufzaehlung}
 	\item Autokorrelation berechnen: $ r_x(k) = \sum\limits_{n=0}^\infty x(n)x^*(n-k)$;\qquad $k\geq 0$
 	\item $a$-Koeffizienten berechnen : $\bm R_x \cdot a_p = -r_x \Longrightarrow a_p = - \bm R_x^{-1} \cdot r_x$ 
   		\matlab{$a_p = - R_x \backslash r_x$} \small\\
-		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0) + \sum\limits_{k=1}^p a_k r_x(k)$
+		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0) + \sum\limits_{k=1}^p a_p(k) r_x(k)$
 			$$
 		\underbrace{\begin{bmatrix}
     		r_x(0) & r_x(1) & \hdots & r_x(p-1) \\                                   
@@ -267,14 +268,51 @@ Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A- 
     		r_x(p)
 		\end{bmatrix}  }_{r_x}$$ 
 	\item $b(0) = \sqrt{\epsilon_p}$ 
-		\normalsize
 \end{aufzaehlung}
 
-\subsection{Linear Prediction \hayes{165}}
-ToDo
+\subsection{Linear Prediction \hayes{165} sowie Aufgabe 4.13}
 
-\subsection{FIR Inverse Filter \hayes{166} sowie Aufgabe 4.13}
-ToDo
+		$$\hat{x}(n+n_0) = \sum\limits_{k=1}^p a_p(k) x(n-k)$$
+		$$
+		\underbrace{\begin{bmatrix}
+    		r_x[1,1] & r_x[1,2] & \hdots & r_x[1,p] \\                                   
+    		r_x[2,1] & r_x[2,2] & \hdots & r_x[2,p] \\
+    		\vdots & \vdots & \ddots & \vdots \\                             
+    		r_x[p,1] & r_x[p,2] & \hdots & r_x[p,p] \\                        
+		\end{bmatrix}  }_{\bm R_x} \cdot 
+		\underbrace{\begin{bmatrix}
+    		a_1 \\
+    		\vdots \\
+    		a_p
+		\end{bmatrix}  }_{a_p}= \underbrace{\begin{bmatrix}
+    		r_x[1,-n_0] \\
+    		\vdots \\
+    		r_x[p,-n_0]
+		\end{bmatrix}  }_{r_x}$$
+
+\subsection{FIR Inverse Filter \hayes{166}}
+$$G(z)H(z) \approx 1\qquad g(n)*h(n) \approx \delta(n) \qquad r_g(k) = \sum\limits_{n=0}^\infty g(n)g^*(n-k) \qquad \text{Delay: } n_0$$
+
+		$$
+		\underbrace{\begin{bmatrix}
+    		r_g(0) & r_g(1) & \hdots & r_g(N-1) \\                                   
+    		r_g(1) & r_g(0) & \hdots & r_g(N-2) \\
+    		\vdots & \vdots & \ddots & \vdots \\                             
+    		r_g(N-1) & r_g(N-2) & \hdots & r_g(0) \\                        
+		\end{bmatrix}  }_{\bm R_g} \cdot 
+		\underbrace{\begin{bmatrix}
+    		h_N(0) \\
+    		\vdots \\
+    		h_N(N-1)
+		\end{bmatrix}  }_{h_N}= -\underbrace{\begin{bmatrix}
+    		g(n_0) \\
+    		g(n_0 - 1)	 \\
+    		\vdots \\
+    		g(0)\\
+    		0\\
+    		\vdots \\
+    		0
+		\end{bmatrix}  }_{r_{gd}}$$
 
 \clearpage
 \subsection{Approximation mit begrenzten  Daten mit All-Pole Filter}

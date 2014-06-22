@@ -149,34 +149,34 @@
 		\begin{minipage}{11cm}
 			\begin{tabular}{ll}
         	Gegeben: &X, Y Zufallsvariablen\\
-        	&$\varphi_X$, $\varphi_Y$ bekannt\\
+        	&$\varphi_x$, $\varphi_y$ bekannt\\
         	\end{tabular}
  
         	\begin{tabular}{p{6cm}p{6cm}}
         	Verteilungsfunktion: &Dichte:\\
-        	$F_{X+a}(x)=F_X(x-a)$  &$\varphi_{X+a}(x)=\varphi_X(x-a)$\\
-        	$F_{\lambda X}(x)=F_X(\frac{x}{\lambda})$ &$\varphi_{\lambda
-        	X}(x)=\varphi_X(\frac{x}{\lambda})\frac{1}{\lambda}$\\
-        	$F_{X+Y}(x)=F_X\ast\varphi_Y(y)=F_Y\ast\varphi_X(x)$ &
-        	$\varphi_{X+Y}(x)=\varphi_X\ast\varphi_Y(x)$\\
-        	$F_{\sqrt{X}}(x)=F_X(x^2)$ &
-        	$\varphi_{\sqrt{X}}(x)=2x\varphi_X(x^2)$\\
-        	$F_{X^2}(x)=F_X(\sqrt{x})$ &
-        	$\varphi_{X^2}(x)=\frac{1}{2}x^{-\frac{1}{2}}\varphi_X(\sqrt{x})$
+        	$F_{x+a}(x)=F_x(x-a)$  &$\varphi_{x+a}(x)=\varphi_x(x-a)$\\
+        	$F_{\lambda x}(x)=F_x(\frac{x}{\lambda})$ &$\varphi_{\lambda
+        	x}(x)=\varphi_x(\frac{x}{\lambda})\frac{1}{\lambda}$\\
+        	$F_{x+y}(x)=F_x\ast\varphi_y(y)=F_y\ast\varphi_x(x)$ &
+        	$\varphi_{x+y}(x)=\varphi_x\ast\varphi_y(x)$\\
+        	$F_{\sqrt{x}}(x)=F_x(x^2)$ &
+        	$\varphi_{\sqrt{x}}(x)=2x\varphi_x(x^2)$\\
+        	$F_{x^2}(x)=F_x(\sqrt{x})$ &
+        	$\varphi_{x^2}(x)=\frac{1}{2}x^{-\frac{1}{2}}\varphi_x(\sqrt{x})$
         	\end{tabular}
 		\end{minipage}
 		\begin{minipage}{7cm}
         	\textbf{Algorithmus Bsp.}
         	\begin{tabular}{ll}
-        	1. Definition von $F$ anwenden: $F_{\lambda X}(x)=P(\underbrace
+        	1. Definition von $F$ anwenden: $F_{\lambda x}(x)=P(\underbrace
         	{\lambda X\leq x}_{*})$\\ 
         	2. Bedingung * umformen: $P(X \leq
-        	\frac{x}{\lambda})=F_X(\frac{x}{\lambda})$\\ 
+        	\frac{x}{\lambda})=F_x(\frac{x}{\lambda})$\\ 
         	3. für Dichte: $\frac{d}{dx}$\\
         	\vspace{3mm}
-        	$\varphi_{\lambda X}(x)=\frac{d}{dx}F_{\lambda
-        	X}(x)=\frac{d}{dx}F_X(\frac{x}{\lambda})=
-        	\varphi_X(\frac{x}{\lambda})\frac{1}{\lambda}$
+        	$\varphi_{\lambda x}(x)=\frac{d}{dx}F_{\lambda
+        	x}(x)=\frac{d}{dx}F_x(\frac{x}{\lambda})=
+        	\varphi_x(\frac{x}{\lambda})\frac{1}{\lambda}$
         	\end{tabular}
 			\vspace{10mm}
         \end{minipage}
@@ -230,12 +230,12 @@
         \underbrace{r_{xy}}_{\text{falls X,Y mittelwertsfrei}}$
         \end{tabular}
         \subsubsection{Korrelations Koeffizient / Correlation Coefficient}
-		$\rho_{xy}=\frac{E((x-m_x)\cdot(y-m_y)^*)}{\rho_x \rho_y}$\\
+		$\rho_{xy}=\frac{E((X-m_x)\cdot(Y-m_y)^*)}{\rho_x \rho_y}$\\
 		$|\rho_{xy}\leq 1|$ \\ 
 		\textbf{Unabhängig}\\
 		Zwei Zufallsvariablen sind statitisch unabhängig wenn die Wahrscheindlichkeitsdichtefunktion separierbar ist: \\
-		$f_{xy}(\alpha, \beta) = f_x(\alpha)f_y(\beta) \Longrightarrow$ auch $E(xy)=E(x)E(y)$ \\
-		Wenn die Variablen zusätzlich unkorreliert sind zählt: $Var(x+y) = Var(x) + Var(y)$
+		$\varphi_{xy}(\alpha, \beta) = \varphi_x(\alpha)\varphi_y(\beta) \Longrightarrow$ auch $E(XY)=E(X)E(Y)$ \\
+		Wenn die Variablen zusätzlich unkorreliert sind zählt: $Var(X+Y) = Var(X) + Var(Y)$
 		
 		
 		
@@ -246,7 +246,7 @@
 		$\frac{d^n}{dt^n}\Phi(t)=)=\int\limits_{-\infty}^\infty x^n \cdot e^{tx} \cdot \varphi(x) dx$ bzw. $= \sum\limits_{i=1}^{\infty} x_i^n \cdot e^{tx_i} \cdot P(X=x_i)$\\
 		für $\frac{d^n}{dt^n}\Phi(0)=)=\int\limits_{-\infty}^\infty x^n \cdot \varphi(x) dx$ bzw. $= \sum\limits_{i=1}^{\infty} x_i^n \cdot P(X=x_i) = E(X^n)=\mu_n $\\
 		
-		Falls $\Phi_X(t) = \Phi_Y(t)$ dann gilt auch $F_X(x)=F_Y(x)$. Dass heisst eine Wahrscheinlichkeitsverteilung kann eindeutig zu einer momenterzeugende Funktion zugeordnet werden.
+		Falls $\Phi_x(t) = \Phi_y(t)$ dann gilt auch $F_x(x)=F_y(x)$. Dass heisst eine Wahrscheinlichkeitsverteilung kann eindeutig zu einer momenterzeugende Funktion zugeordnet werden.
 		
 		
 			
@@ -276,7 +276,7 @@
 		$\varphi_{x,y}(\alpha,\beta)=\frac{1}{2\pi \sigma_x \sigma_y \sqrt{1-\rho_{xy}^2}}
 			e^{-\frac{1}{2(1-\rho_{xy})^2} + \frac{(\alpha - m_x)^2}{\sigma_x^2} 
 			- 2\rho_{xy}\frac{(\alpha - m_x)\beta - m_y)^2}{\sigma_x \sigma_y} + \frac{(\beta - m_y)^2}{\sigma_y^2}}$\\
-			$\varphi_X(\textbf{x})=\frac{1}{(2\pi)^{\frac{n}{2}}|\textbf{C}_x|^{\frac{1}{2}}}\cdot 
+			$\varphi_x(\textbf{x})=\frac{1}{(2\pi)^{\frac{n}{2}}|\textbf{C}_x|^{\frac{1}{2}}}\cdot 
 			e^{-\frac{1}{2}(\textbf{x} - \textbf{m}_x)^T \textbf{C}_x^{-1} (\textbf{x} - \textbf{m}_x)}$ mit \\
 			$\textbf{m}_x=[E(x_1), E(x_2), \ldots, E(x_n)]^T$ und der Kovarianzmatrixe $\textbf{C}_x$; $c_{ij} = E((x_i-E(x_i)(x_j-E(x_j))))$ \\
 		\textbf{Rechenregel für die Normalverteilung mit mehreren Unbekannten}
@@ -318,9 +318,9 @@ bestimmten Zeitpunkt $t$ gemittelt.
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}[c]{ p{4.5cm}  p{13.5 cm}  }
 	\textbf{Erwartungswert}: 	&  $\mu_{x}(t) = E\left[X(t)\right] =
-          \int\limits_{-\infty}^{+\infty} x \cdot f_{X}(x;t)\;dx$ bzw $=\frac{1}{N}\sum\limits_{i=1}^{N}x_i(n)$ \\
+          \int\limits_{-\infty}^{+\infty} x \cdot f_{x}(x;t)\;dx$ bzw $=\frac{1}{N}\sum\limits_{i=1}^{N}x_i(n)$ \\
     \textbf{Erwartungswert eines deterministischen Signals}:& $\mu_f(t) = E(f(t))=f(t)$\\
- 	\textbf{Varianz}: &         $\sigma_X^2(t)=E((x(t)-\mu_X(t))^2)=c_X(t_1,t_1)$
+ 	\textbf{Varianz}: &         $\sigma_x^2(t)=E((x(t)-\mu_x(t))^2)=c_x(t_1,t_1)$
     
 	 
 \end{tabular}
@@ -335,8 +335,8 @@ Ein stationärer Prozess verändert seine statistischen Eigenschaften über die 
 Bei einem streng stationären Prozess bleiben die n-dimensionale WSK-Dichten über die
 Zeit konstant. D.h. die \textbf{statistischen Eigenschaften} und somit auch die WSK-Dichten sind zu 
 \textbf{allen Zeitpunkten dieselben}.
-$$ f_X(x_1, x_2, \ldots, x_n; t_1, t_2, \ldots, t_n) =
-		f_X(x_1, x_2, \ldots, x_n; t_1+c, t_2+c, \ldots, t_n+c) \qquad \forall (c,n \in
+$$ f_x(x_1, x_2, \ldots, x_n; t_1, t_2, \ldots, t_n) =
+		f_x(x_1, x_2, \ldots, x_n; t_1+c, t_2+c, \ldots, t_n+c) \qquad \forall (c,n \in
 		\mathbb{R})$$
 % Es gelten folgende Beziehungen: \\
 % $$E[X(t)] = \mu_{x} \qquad \qquad
@@ -347,7 +347,7 @@ $$ f_X(x_1, x_2, \ldots, x_n; t_1, t_2, \ldots, t_n) =
 Bei einem schwach stationären Prozess sind die statistischen Eigenschaften zwar
 \textbf{nicht zu jedem Zeitpunkt die selben}, jedoch sind sie \textbf{nicht} von einem \textbf{absoluten} Zeitpunkt, sondern
 von der \textbf{Differenz} ($\tau$) \textbf{zweier Zeitpunkte} ($t_1, t_2$) abhängig.  \\ 
-$$ f_X(x_1, x_2; t_1, t_2) = f_X(x_1, x_2; t_1+c, t_2+c) \qquad \forall (c \in
+$$ f_x(x_1, x_2; t_1, t_2) = f_x(x_1, x_2; t_1+c, t_2+c) \qquad \forall (c \in
 		\mathbb{R})$$
 %Zudem gilt:\\
 \renewcommand{\arraystretch}{1.4}
@@ -426,9 +426,9 @@ Ein stationärer Prozess ist zudem noch ergodisch, wenn die \textbf{zeitlichen M
       $E[X(t)]^{2} = (\overline{x})^{2} = \left\langle x(t) \right\rangle^{2}$ & DC-Leistung \\
       $E[X^{2}(t)] = r_{xx}(0) = \overline{x^{2}} = 
                      \left\langle x^{2}(t) \right\rangle $ & Gesamtleistung \\
-      $\sigma_{X}^{2}(t) = \left\langle x^{2}(t) \right\rangle 
+      $\sigma_{x}^{2}(t) = \left\langle x^{2}(t) \right\rangle 
                            - \left\langle x(t) \right\rangle^{2}$ & AC-Leistung \\
-      $\sigma_{X}(t) = \overline{\sigma}_{X}$ & RMS-Level (Effektivwert) des AC-Signals\\
+      $\sigma_{x}(t) = \overline{\sigma}_{x}$ & RMS-Level (Effektivwert) des AC-Signals\\
     \end{tabular} \\
   	\end{minipage}
 
@@ -465,7 +465,7 @@ Formeln in diesem Abschnitt gelten für \textbf{stationäre} Prozesse. \\
   	&	$\mid \! r_{xx}(\tau) \! \mid \leq r_{xx}(0) = E[X^{2}(t)]$ 
 	& $r_{xx}(-\tau) = r_{xx}(\tau) \quad$ (gerade, Fouriertransformation wird real)\\
   \textbf{Kreuzkorrelation}:& 	
- 	$r_{XY}(\tau)=r_{xy}(\tau) = E[X(t)Y(t+\tau)]$  
+ 	$r_{xy}(\tau)=r_{xy}(\tau) = E[X(t)Y(t+\tau)]$  
 	& $r_{xy}(-\tau) = r_{yx}(\tau) \quad$ (Reihenfolge Indizes!) \\
     & $|r_{xy}(\tau)| \leq \frac{1}{2} \left[ r_{xx}(0)+r_{yy}(0)\right] $
 	& $|r_{xy}(\tau)|  \leq \sqrt{r_{xx}(0)r_{yy}(0)}$ \\
@@ -473,9 +473,9 @@ Formeln in diesem Abschnitt gelten für \textbf{stationäre} Prozesse. \\
           E\left[ \left( X(t_{1})-\mu_{x}(t_{1})\right) \cdot
                   \left( X(t_{2})-\mu_{x}(t_{2})\right) \right] =
           r_{xx}(t_{1},t_{2}) - \mu_{x}(t_{1}) \cdot \mu_{x}(t_{2})=$}\\	
-	&\multicolumn{2}{l}{$c_X(\tau)=c_{xx}(\tau) = E\!\left[ \left( X(t)      - E[X(t)]      \right) \cdot
+	&\multicolumn{2}{l}{$c_x(\tau)=c_{xx}(\tau) = E\!\left[ \left( X(t)      - E[X(t)]      \right) \cdot
                                   \left( X(t+\tau) - E[X(t+\tau)] \right) \right] =
-                        r_{xx}(\tau) - \mu^{2}_{X} $} \\
+                        r_{xx}(\tau) - \mu^{2}_{x} $} \\
    	\textbf{Kreuzkovarianz}: 	& \multicolumn{2}{l} {$c_{xy}(t_{1},t_{2}) = 
           E\left[ \left( X(t_{1})-\mu_{x}(t_{1})\right) \cdot
                   \left( Y(t_{2})-\mu_{y}(t_{2})\right)^* \right] =
