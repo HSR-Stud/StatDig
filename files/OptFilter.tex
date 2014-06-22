@@ -73,13 +73,13 @@ $\alpha$ are the steps to predict. Noise: $r_y(k) = r_x(k) + r_v(k)$\\
 \begin{minipage}{11.5cm}
 \subsubsection{Linear Phase Filter \hayes{17}, exercise 9.16} 
 All frequency are delayed same. \\
-For \textbf{FIR}: the coefficients are symmetric $(z^1+2z^0+z^{-1})$ or with a causal filter: $z^0 + 2z^{-1} + z^{-2}$\\
+For \textbf{FIR}: the coefficients are symmetric $(w_n(0)z^1+w_n(1)z^0+w_n(0)z^{-1})$ or with a causal filter: $w_n(0)z^0 + w_n(1)z^{-1} + w_n(0)z^{-2}$\\
 $\small \begin{bmatrix}
 2 r_x[0] + 2 r_x[2]		&	2 r_x[1] \\
 2 r_x[1]				& 	r_x[0]
 \end{bmatrix} \cdot \begin{bmatrix}
-w_n(1)\\
-w_n(0)
+w_n(0)\\
+w_n(1)
 \end{bmatrix}= \underbrace{ \begin{bmatrix}
 r_x[\alpha] + r_x[\alpha+2]\\
 r_x[\alpha+1]
