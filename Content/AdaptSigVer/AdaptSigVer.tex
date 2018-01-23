@@ -2,16 +2,16 @@
 \begin{minipage}{11cm}
 \section{Adaptive Signalverarbeitung}
 \subsection{Adaptive Filter}
-\textbf{Ziel:} Verarbeitungseigenschaften des adaptiven Systems selbstständig durch rekursive Modifikation seiner Parameter $c_n$ ändern.
+\textbf{Ziel:} Verarbeitungseigenschaften des adaptiven Systems selbststï¿½ndig durch rekursive Modifikation seiner Parameter $c_n$ ï¿½ndern.
 
-\subsubsection{LS (Least Square) Algorithmus - Wiener Lösung}
+\subsubsection{LS (Least Square) Algorithmus - Wiener Lï¿½sung}
 
 \end{minipage}
 \begin{minipage}{8cm}
 \includegraphics[width=8cm,trim= 0cm 0cm 0cm 0cm]{Content/AdaptSigVer/AdaptSigVer.png}
 \end{minipage}
 
-Für Berechnung der AKF $Rss(i)$ und der KKF $Rsr(i)$ werden statische Eigenschaften des Zufallsprozesses verwendet (Erwartungswerte). D.h. das Eingangssignal $s(i)$ und das Referenzsignal $r(i)$ werden in gleichlange Blöcke aufgeteilt.\\ 
+Fï¿½r Berechnung der AKF $Rss(i)$ und der KKF $Rsr(i)$ werden statische Eigenschaften des Zufallsprozesses verwendet (Erwartungswerte). D.h. das Eingangssignal $s(i)$ und das Referenzsignal $r(i)$ werden in gleichlange Blï¿½cke aufgeteilt.\\ 
 
 $\begin{bmatrix}
     Rss(0) & Rss(1) & Rss(2) & \cdots & Rss(N) \\
@@ -40,20 +40,18 @@ $\qquad Rss \cdot c = Rsr \Longrightarrow c=Rss^{-1} \cdot Rsr$
 
 
 \subsubsection{RLS (Recursive Least Square ) Algorithmus}
-\textbf{Idee:} $Rss \cdot c = Rsr$ rekursiv lösen (schneller)\\
+\textbf{Idee:} $Rss \cdot c = Rsr$ rekursiv lï¿½sen (schneller)\\
 Die AKF und KKF werden direkt aus den anliegenden Signalen berechnet (keine Erwartungswerte).
 
 $\text{Filterordnung: }p \qquad \text{Signalwerte: } s(i) = [x(n)~x(n-1) \cdots x(n-p)]^T \qquad c(i)=P(i) \cdot Rsr(i) \qquad P(i) = Rss^{-1}(i)$\\
 Exponentielles Vergessen: Vergessensfaktor $\mu \quad (0<\mu<1) \qquad \text{Wahl: }(\mu \in [0.9,\cdots,0.9999]\text{ ;} \quad \text{ohne Vergessen } \mu=1)$\\
-Initialisierung: $i=1 \qquad P(0) = I\cdot \lambda \quad (\lambda >> 1) \qquad c(0) = 0 \text{ (oder guter Schätzwert)}$
+Initialisierung: $i=1 \qquad P(0) = I\cdot \lambda \quad (\lambda >> 1) \qquad c(0) = 0 \text{ (oder guter Schï¿½tzwert)}$
 \begin{enumerate}
  \item Gain: $k(i) = \frac{P(i-1) \cdot s(i)}{\mu + s^T(i) \cdot P(i-1) \cdot s(i)} \qquad \text{(Spaltenvektor [1 x n])}$
- \item Schätzfehler: $\eta(i) = r(i) - s^T(i) \cdot c(i-1) \qquad \text{(Zahl [1 x 1])}$
+ \item Schï¿½tzfehler: $\eta(i) = r(i) - s^T(i) \cdot c(i-1) \qquad \text{(Zahl [1 x 1])}$
  \item Koeffizienten: $c(i) = c(i-1) + k(i) \cdot \eta(i) \qquad \text{(Spaltenvektor [1 x n])}$
  \item Fehlerkorrelationsmatrix: $P(i) = \frac{1}{\mu} \left( P(i-1) - k(i) \cdot s^T(i) \cdot P(i-1) \right) \qquad \text{(Matrize [n x n])}$
 \end{enumerate}
-
-\newpage
 
 \subsubsection{LMS (Least Mean Square) Algorithmus - Gradienten Algo.}
 Koeffizienten werden schrittweise berechnet. Sie werden in richtung des negativen Gradienten des quadratischen Fehlers korrigiert. Standard LMS ohne Mittelwertbildung!
@@ -73,5 +71,5 @@ Koeffizienten werden schrittweise berechnet. Sie werden in richtung des negative
 \end{minipage}
 \textbf{Normalized Least Mean Square (NLMS):} $\qquad \qquad \qquad \qquad \alpha(i) = \frac{\alpha_0}{\delta + L \cdot \sigma^2} \qquad L=N+1$\\
 $\delta$: kleiner Wert (verhindert Div durch 0); $\alpha_0$: Konstante;\\ 
-Korrekturkonstante $\alpha$ umgekehrt proportional zur geschätzten Signalleistung $\sigma^2$\\
-$\sigma^2$ wird als Kurzmittel der quadrierten Eingangssignalwerte $s^2(i)$ gebildet; sinnvolle Mittelungszeit $\rightarrow$ Filterlänge $N+1$
+Korrekturkonstante $\alpha$ umgekehrt proportional zur geschï¿½tzten Signalleistung $\sigma^2$\\
+$\sigma^2$ wird als Kurzmittel der quadrierten Eingangssignalwerte $s^2(i)$ gebildet; sinnvolle Mittelungszeit $\rightarrow$ Filterlï¿½nge $N+1$

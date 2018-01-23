@@ -193,8 +193,8 @@ mithilfe der Zustandsgrössen und einem Rauschsignal definiert ist. \\
 				$\frac QR$ gross $\rightarrow$ vertraut mehr den Messdaten\newline \hspace{4cm} $\frac QR$ klein $\rightarrow$ vertraut mehr den Systemeigenschaften
 	    \end{liste}
 	\normalsize
-\end{minipage}\\
-\clearpage
+\end{minipage}
+
 
 \subsubsection{Kalman Algorithm}
 Idea: Best estimation when process and observer equation as well as some initial conditions are given.
@@ -241,3 +241,48 @@ $\hat{T}=k_1\cdot T_1 + k_2\cdot T_2$\\
 $k_1=\frac{\sigma_2^2-\rho \sigma_1 \sigma_2}{\sigma_1^2 - 2 \rho \sigma_1 \sigma_2 + \sigma_2^2}$\\
 $k_2=1-k_1=\frac{\sigma_1^2-\rho \sigma_1 \sigma_2}{\sigma_1^2 - 2 \rho \sigma_1 \sigma_2 + \sigma_2^2}$\\
 \end{minipage}
+
+\subsubsection{Kalman Modelling of Known System Behaviour}
+When a system has known behaviour, the state space representation can be used to find the Kalman matrices. The system is interpreted as a measurement with input $w(n)$ (measurement noise), output $y(n)$ and an added process noise $v(n)$ that is directly added to $y(n)$. 
+
+\begin{longtable}[H]{|>{\bfseries}p{0.3\textwidth}|p{0.65\textwidth}|}
+	\hline
+	1.: General transfer function:
+		& $H(z) = \dfrac{Y(z)}{W(z)} = \dfrac{b_0 + b_1z^{-1} + b_2 z^{-2} + \dots + b_q z^{-q}}{1 + a_1z^{-1} + a_2 z^{-2} + \dots + a_p z^{-p}}$\\
+		& \color{red}{Warning: The z-Transform of a known model does not always yield the correct difference equation! For example if a pole is on the unit circle\newline e.g $y(n) = (-1)^n \FT \frac{1}{1+z^{-1}} \IFT y(n) \neq 1 - y(n-1)$.\newline \textrightarrow What you need to do is to find the difference equation! The z-Transform might be one way to do that, but it doesn't always work.}\\
+	\hline
+	2.: Difference equation:
+		& $y(n) = v(n) + b_0 w(n) + \ldots + b_q w(n-q) - a_1y(n-1) + \ldots - a_q y(n-q)$\\
+	\hline
+	3.: States:
+		& {\begin{align*}
+				x(n) 	&= w(n) - a_1 x(n-1) - a_2 x(n-2) - \ldots - a_p x(n-p)\\
+				x(n-1)	&= x(n-1)\\
+				\vdots 	&=	\vdots\\
+				x(n-max(p,q) &= x(n-max(p,q))\\
+		\end{align*}}\\
+		& For more information see \href{https://github.com/HSR-Stud/DigSig2}{DigSig2 cheat sheet section 1.2 Canonical Form}. (Flow diagram and states)\\
+	\hline
+	4.: State space representation:
+		& $A = \begin{bmatrix}
+			-a_1 	& -a_2 		& \dots 	& -a_{p-1}	& -a_p\\
+			1		& 0			& \dots		& 0			& 0\\
+			0		& 1			& \dots		& 			& 0\\
+			\vdots	& \vdots	& \ddots	& \vdots	& 0\\
+			0		& 0			& \dots		& 1			& 0\\	
+		\end{bmatrix}, 
+		B = \begin{bmatrix}
+			w(n)\\
+			0\\
+			0\\
+			\vdots\\
+			0\\
+		\end{bmatrix}$\\
+		& $C = \begin{bmatrix}
+			b_0 & b_1 & \dots & b_q\
+		\end{bmatrix}, D = v(n)$\\
+	\hline
+\end{longtable}
+
+      
+      

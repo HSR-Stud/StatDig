@@ -33,3 +33,4 @@
 *.pdf
 *.synctex
 \#*
+/tmp/
