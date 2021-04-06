@@ -4,7 +4,7 @@
   \section{Signal Modeling \hayes{129}}
   %\renewcommand{\arraystretch}{1.0}
   \textbf{Ziel: } Die Koeffizienten für ein Filter berechnen, dessen
-  Impulsantwort möglichst genau mit einer gegebenen Signal ($x[n]$ - mit
+  Impulsantwort möglichst genau mit einem gegebenen Signal ($x[n]$ - mit
   Länge $n$) übereinstimmt.
   
       $$ y(n) = \sum\limits_{k=0}^{q} b(k)x(n-k) - \sum\limits_{k=1}^{p} a(k)y(n-k)$$
@@ -44,15 +44,15 @@
 
 \subsection{Least Square Method \hayes{131}}
 Die Koeffizienten \textbf{A und B} werden mit dem kleinsten Fehlerquadrat geschätzt. Da für die Schätzung ein $p+q$ Gleichungssystem aufgelöst 
-werden muss, wird dies Methode sehr selten angewendet.\\
+werden muss, wird diese Methode sehr selten angewendet.\\
 \begin{minipage}{8cm}
 	\includegraphics[width=8cm]{../StatDig/bilder/signalModeling.png}
 \end{minipage}
 \begin{minipage}{10cm}
 $\frac{\partial \sum\limits_{n=0}^{\infty}|e'(n)|^2}{\partial a_p^*(k)}=\frac{1}{2\pi} \int\limits_{-\pi}^{\pi}\left[X(e^{j\omega})-
-\frac{B_q(e^{j\omega})}{A_p (e^{j\omega})}\right]\frac{B^*_q(e^{j\omega})}{A_p^* (e^{j\omega})^2}e^{j\omega} d\omega=0$\\
+\frac{B_q(e^{j\omega})}{A_p (e^{j\omega})}\right]\frac{B^*_q(e^{j\omega})}{A_p^* (e^{j\omega})^2}e^{jk\omega} d\omega=0$\\
 $\frac{\partial \sum\limits_{n=0}^{\infty}|e'(n)|^2}{\partial b_q^*(k)}=\frac{1}{2\pi} \int\limits_{-\pi}^{\pi}\left[X(e^{j\omega})-
-\frac{B_q(e^{j\omega})}{A_p (e^{j\omega})}\right]\frac{e^{j\omega}}{A_p^* (e^{j\omega})} d\omega=0$\\
+\frac{B_q(e^{j\omega})}{A_p (e^{j\omega})}\right]\frac{e^{jk\omega}}{A_p^* (e^{j\omega})} d\omega=0$\\
 \end{minipage} 
 \subsubsection{Example FIR Equalizer}
 With a FIR first order (2 coefficients) a given sequence (e.g. $[0, 2, 1, 0]$ ) should be filtered so that output is a Dirac $[0, 1 , 0 , 0]$.\\
@@ -210,9 +210,9 @@ angenähert.
 	
 \subsection{Shanks' Method \hayes{154}}
 
-Die B Koeffizient werden bei gegebenen A's so geschätzt, dass die resultierende Impulsantwort ist im Intervall $[0, n - 1]$ mit dem
+Die B-Koeffizienten werden bei gegebenen A's so geschätzt, dass die resultierende Impulsantwort im Intervall $[0, n - 1]$ mit dem
 \textbf{kleinsten Fehlerquadrat} (überbestimmtes GL-System) dem gegebenen
-Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A- Koeffizenten auch noch alle Signalwerte einbeziehen würden (Least-square).
+Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A-Koeffizenten auch noch alle Signalwerte einbeziehen würden (Least-square).
 
 \begin{aufzaehlung}
   		\item $a$-Koeffizienten berechnen wie bei \textbf{Prony}: $a_p = - \bm R_x^{-1} \cdot r_x$ \matlab{$a_p = - R_x \backslash r_x$}  
@@ -240,7 +240,7 @@ Signal $x[n]$ angenähert wird. Die einzige Verbesserung wäre noch wenn die A- 
     		r_{xg}(1) \\
     		\vdots \\
     		r_{xg}(q) \\
-		\end{bmatrix}  }_{r_{gx}} $$
+		\end{bmatrix}  }_{r_{xg}} $$
 \end{aufzaehlung}
 
 \subsection{All-Pole Modeling \hayes{160}}
@@ -249,11 +249,11 @@ Entspricht: \ref{sec:autoregressive_model_method}
 	\item Autokorrelation berechnen: $ r_x(k) = \sum\limits_{n=0}^\infty x(n)x^*(n-k)$;\qquad $k\geq 0$
 	\item $a$-Koeffizienten berechnen : $\bm R_x \cdot a_p = -r_x \Longrightarrow a_p = - \bm R_x^{-1} \cdot r_x$ 
   		\matlab{$a_p = - R_x \backslash r_x$} \small\\
-		Der minimale Fehler ist: $\epsilon_{p,q} = r_x(0) + \sum\limits_{k=1}^p a_p(k) r_x(k)$
+		Der minimale Fehler ist: $\epsilon_{p} = r_x(0) + \sum\limits_{k=1}^p a_p(k) r_x^*(k)$
 			$$
 		\underbrace{\begin{bmatrix}
-    		r_x(0) & r_x(1) & \hdots & r_x(p-1) \\                                   
-    		r_x(1) & r_x(0) & \hdots & r_x(p-2) \\
+    		r_x(0) & r_x^*(1) & \hdots & r_x^*(p-1) \\                                   
+    		r_x(1) & r_x(0) & \hdots & r_x^*(p-2) \\
     		\vdots & \vdots & \ddots & \vdots \\                             
     		r_x(p-1) & r_x(p-2) & \hdots & r_x(0) \\                        
 		\end{bmatrix}  }_{\bm R_x} \cdot 
