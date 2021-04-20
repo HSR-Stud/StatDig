@@ -271,7 +271,7 @@ Entspricht: \ref{sec:autoregressive_model_method}
 
 \subsection{Linear Prediction \hayes{165} sowie Aufgabe 4.13}
 
-		$$\hat{x}(n+n_0) = \sum\limits_{k=1}^p a_p(k) x(n-k)$$
+		$$\hat{x}(n+n_0) = - \sum\limits_{k=1}^p a_p(k) x(n-k)$$
 		$$
 		\underbrace{\begin{bmatrix}
     		r_x[1,1] & r_x[1,2] & \hdots & r_x[1,p] \\                                   
@@ -316,7 +316,7 @@ $$G(z)H(z) \approx 1\qquad g(n)*h(n) \approx \delta(n) \qquad r_g(k) = \sum\limi
 
 \subsection{Approximation mit begrenzten  Daten mit All-Pole Filter}
 \subsubsection{Autocorrelation Method \hayes{178}}
-Sind die die Autokorrellationen gegeben, siehe Kapitel \ref{sec:autoregressive_model_method}.\\
+Sind die die Autokorrelationen gegeben, siehe Kapitel \ref{sec:autoregressive_model_method}.\\
 Annahme: Die Daten $x[n]$ sind ausserhalb des Definitionsbereichs ($n=[0..N]$) Null: $x[n]=0$. So wird der Filter in einen stabilen Zustand gezwungen.
 \renewcommand{\arraystretch}{1.0}
 
@@ -358,8 +358,8 @@ Annahme: Die Daten $x[n]$ sind ausserhalb des Definitionsbereichs ($n=[0..N]$) N
 	\end{aufzaehlung}
 	
 \subsubsection{Covariance Method  \hayes{183}}
-Es werden keine Annahmen getroffen, nur die vorhanden Daten werden verwendet. Der Nachteil ist, dass das Filter instabil werden kann. 
-Ein weiterer Nachteil ist, dass A keine Toeplitz Matrixe ist, so dass das Auflösen nicht so einfach ist wie bei der Autokorrelation Methode. 
+Es werden keine Annahmen getroffen, nur die vorhanden Daten werden verwendet. Ein Nachteil ist, dass das Filter instabil werden kann. 
+Ein weiterer Nachteil ist, dass A keine Toeplitz Matrix ist, so dass das Auflösen nicht so einfach ist wie bei der Autocorrelation Methode. 
 Das Signal wird jedoch genauer rekonstruiert. Bei einer Datenreihe, welche einer Impulsantwort entspricht, wird der Filter perfekt rekonstruiert. 
 Mit dem Nachteil, dass auch die instabilen Pole implementiert werden. $a_p = -\left(\bm X_p^T \cdot \bm  X_p\right)^{-1} \cdot \bm X_p^T \cdot x_p$ \matlab{$a_p = -X_p \backslash x_p$} \small
 		$$
@@ -377,18 +377,19 @@ Mit dem Nachteil, dass auch die instabilen Pole implementiert werden. $a_p = -\l
     		 -x[p+1]\\
     		\vdots \\
     		 -x[N]\\
-		\end{bmatrix}}_{x_p} 
+		\end{bmatrix}}_{x_p}
 		 $$ \normalsize
-\vspace{-0.6cm}
+(Hinweis: Diese Gleichungen sind ein Subset der Gleichungen der Autocorrelation Methode.)
 
 \subsection{Stochastische Modelle}
 Bei stochastischen Modellen werden generell die gleichen Modelle verwendet, wie in der deterministischen Welt. 
 Anstatt des Dirac-Impulses wird weisses Rauschen am Eingang des Filters verwendet und die Autokorrelation wird mit Hilfe des Erwartungswertes gebildet. 
-$r(k)=E\{x(n) \cdot x^*(n-k)\}$\\
-Anstatt der Kreuzkorellation $r_{gx}$ wird die Faltung von $b_q(k)$ und $h^*(-k)$ verwendet. $c_q(k) = b_q(k) \ast h^*(-k)$
+$r_x(k)=E\{x(n) \cdot x^*(n-k)\}$\\
+Anstatt der Kreuzkorellation $r_{gx}$ wird die Faltung von $b_q(k)$ und $h^*(-k)$ verwendet.\\
+$c_q(k) = b_q(k) \ast h^*(-k) = \sum_{l=0}^{q-k} b_q(l+k) h^*(l)$
 
 \subsubsection{Autoregressive Moving Average Models, ARMA \hayes{189}}
-Ein ARMA Pozess ist weisses Rauschen welches durch ein LTI- System $H(z)$ gefiltert wird.\\
+Ein ARMA(p,q) Pozess ist weisses Rauschen welches durch ein LTI- System $H(z)$ gefiltert wird.\\
 Um die Koeffizienten von $H(z)=\frac{B_q(z)}{A_p(z)}=\frac{\sum\limits_{k=0}^q b_q(k)z^{-k}}{1+\sum\limits_{k=1}^p a_p(k)z^{-k}}$ werden 
 die \textbf{erweiterten Yule-Walker Gleichungen} gelöst:
 \small$$
@@ -451,7 +452,7 @@ die \textbf{erweiterten Yule-Walker Gleichungen} gelöst:
     		a_p(2) \\
     		\vdots \\
     		a_p(p)
-		\end{bmatrix}  }_{a_p}= - \underbrace{\begin{bmatrix}
+		\end{bmatrix}  }_{a_p}= \underbrace{\begin{bmatrix}
     		 c_q[0]\\            
     		 c_q[1]]\\
     		\vdots \\
@@ -461,7 +462,7 @@ die \textbf{erweiterten Yule-Walker Gleichungen} gelöst:
 		 \item $[C_q(z)]_+$ aufschreiben: $[C_q(z)]_+ = \sum\limits_{k=0}^q c_q(k)z^{-k}$
 		 \item $[P_y(z)]_+=\left[[C_q(z)]_+ \cdot A^*_p(1/z^*)\right]_+$ berechnen. \\
 		 z.B $[C_1(z)]_+=\frac{45}{2}-6z^{-1}$, $A^*_p(1/z^*)=1-0.5z$; $[C_1(z)]_+ \cdot A^*_p(1/z^*)= -\frac{45}{4}z +\frac{51}{2}-6z^{-1}$ $\Rightarrow$  $[P_y(z)]_+= \frac{51}{2}-6z^{-1}$
-		 \item $[P_y(z)]_+$ symterisch machen. z.B: $P_y(z) =  -6 z +\frac{51}{2}-6z^{-1}$
+		 \item $[P_y(z)]_+$ symmetrisch machen. z.B: $P_y(z) =  -6 z +\frac{51}{2}-6z^{-1}$
 		 \item Faktorisieren von $P_y(z)=B_q(z)B_q^*(1/z^*)$ damit $B_p(z)$ verwendet werden kann: \\
 		 z.B. $B_1(z)\cdot B_1^*(1/z^*)= \underbrace{2\sqrt{6}(1-\frac{1}{4}z^{-1})}_{B_q(z)}\cdot \underbrace{2\sqrt{6}(1-\frac{1}{4}z^{1})}_{B_q^*(1/z^*)}$
 		 \item $H(z)=\frac{B_q(z)}{A_p(z)}$ z.B: $H(z)=\frac{2 \sqrt{6}(1-\frac 1 4 z^{-1})}{A_p(z)}$
@@ -469,7 +470,7 @@ die \textbf{erweiterten Yule-Walker Gleichungen} gelöst:
 		 
 \subsubsection{Autoregressive Models - AR \hayes{194}}
 \label{sec:autoregressive_model_method}
-Bei der AR wird die ARMA Methode verwendet, jedoch nur mit Polen. $H(z)=\frac{b(0)}{1+\sum\limits_{k=1}^{p} a_p(k)z^{-k}}$.\\
+Bei der AR(p) wird die ARMA(p,q=0) Methode verwendet, jedoch nur mit Polen. $H(z)=\frac{b(0)}{1+\sum\limits_{k=1}^{p} a_p(k)z^{-k}}$.\\
  $$\begin{bmatrix} 
 	 	r_x(0)  & r_x^*(1) & r_x^*(2) & \cdots & r_x^*(p-1)\\
 	 	r_x(1)  & r_x(0) & r_x^*(1) & \cdots & r_x^*(p-2)\\
@@ -497,7 +498,7 @@ Bei der AR wird die ARMA Methode verwendet, jedoch nur mit Polen. $H(z)=\frac{b(
 
  
  \subsubsection{Moving Average Models - MA \hayes{195}}
-Ein MA Prozess ist eine Spezialform von einem ARMA Prozess, welcher nur Nullstellen besitzt.\\
+Ein MA Prozess ist eine Spezialform eines ARMA(p=0,q) Prozesses, welcher nur Nullstellen besitzt.\\
 $P_x(z)=\sum\limits_{k=-q}^{q}r_x(k)z^{-k}=B_q(z)B_q^*(1/z^*)$
 \begin{aufzaehlung}
 	\item $P_x(z)$ spektral faktorisieren in: $P_x(z)=\sigma^2_0 \cdot Q(z)\cdot Q^*(1/z^*)=\underbrace{\sigma^2_0}_{|b_q(0)|^2} \underbrace{\prod\limits_{k=1}^q (1-\beta_k z^{-1})}_{B_q(z)} \cdot \underbrace{\prod\limits_{k=1}^q (1-\beta_k^* z)}_{B^*_q(1/z^*)}$
